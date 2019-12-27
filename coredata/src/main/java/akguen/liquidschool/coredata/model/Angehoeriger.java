@@ -8,10 +8,10 @@ public class Angehoeriger {
     private String institution;
     private String beziehung;
     private String geschlecht;
+    private String email;
+    private String passwort;
 
-
-
-    public Angehoeriger (int id, String vorname, String nachname, String institution, String beziehung, String geschlecht){
+    public Angehoeriger (int id, String vorname, String nachname, String institution, String beziehung, String geschlecht, String email, String passwort){
 
        this.id = id;
        this.vorname = vorname;
@@ -19,7 +19,8 @@ public class Angehoeriger {
        this.institution = institution;
        this.beziehung = beziehung;
        this.geschlecht = geschlecht;
-
+       this.email = email;
+       this.passwort = passwort;
 
     }
 

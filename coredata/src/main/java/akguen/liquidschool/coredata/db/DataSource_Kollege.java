@@ -4,8 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +27,14 @@ public class DataSource_Kollege {
             MyDbHelper.KOLLEGE_COLUMN_ID,
             MyDbHelper.KOLLEGE_COLUMN_VORNAME,
             MyDbHelper.KOLLEGE_COLUMN_NACHNAME,
-            MyDbHelper.KOLLEGE_COLUMN_PASSWORT,
-            MyDbHelper.KOLLEGE_COLUMN_KUERZEL,
-            MyDbHelper.KOLLEGE_COLUMN_STATUS
+            MyDbHelper.KOLLEGE_COLUMN_PERSONALTYP,
+            MyDbHelper.KOLLEGE_COLUMN_GEBURTSTAG,
+            MyDbHelper.KOLLEGE_COLUMN_STRASSE,
+            MyDbHelper.KOLLEGE_COLUMN_PLZ,
+            MyDbHelper.KOLLEGE_COLUMN_TELEFON,
+            MyDbHelper.KOLLEGE_COLUMN_EMAIL,
+            MyDbHelper.KOLLEGE_COLUMN_STANDORT,
+            MyDbHelper.KOLLEGE_COLUMN_PASSWORT
     };
 
     public DataSource_Kollege(Context context) {
@@ -44,13 +53,22 @@ public class DataSource_Kollege {
         Log.d(LOG_TAG, "Datenbank mit Hilfe des DbHelpers geschlossen.");
     }
 
-    public Kollege createKollege(String v1, String v2, String v3, String v4, String v5) {
+
+    public Kollege createKollege(String v1, String v2, String v3, String v4, String v5, String v6, String v7, String v8, String v9, String v10) throws GeneralSecurityException, IOException {
+
+
+
         ContentValues values = new ContentValues();
         values.put(MyDbHelper.KOLLEGE_COLUMN_VORNAME, v1);
         values.put(MyDbHelper.KOLLEGE_COLUMN_NACHNAME, v2);
-        values.put(MyDbHelper.KOLLEGE_COLUMN_PASSWORT, v3);
-        values.put(MyDbHelper.KOLLEGE_COLUMN_KUERZEL, v4);
-        values.put(MyDbHelper.KOLLEGE_COLUMN_STATUS, v5);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_PERSONALTYP, v3);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_GEBURTSTAG, v4);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_STRASSE, v5);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_PLZ, v6);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_TELEFON, v7);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_EMAIL, v8);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_STANDORT, v9);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_PASSWORT, v10);
 
         long insertId = database.insert(MyDbHelper.TABLE_KOLLEGE, null, values);
 
@@ -75,15 +93,21 @@ public class DataSource_Kollege {
         Log.d(LOG_TAG, "Eintrag gelöscht! ID: " + id + " Inhalt: " + kollege.toString());
     }
 
-    public Kollege updateKollege(int id, String v1, String v2, String v3, String v4, String v5) {
+    public Kollege updateKollege(int id, String v1, String v2, String v3, String v4, String v5, String v6, String v7, String v8, String v9, String v10) {
 
 
         ContentValues values = new ContentValues();
         values.put(MyDbHelper.KOLLEGE_COLUMN_VORNAME, v1);
         values.put(MyDbHelper.KOLLEGE_COLUMN_NACHNAME, v2);
-        values.put(MyDbHelper.KOLLEGE_COLUMN_PASSWORT, v3);
-        values.put(MyDbHelper.KOLLEGE_COLUMN_KUERZEL, v4);
-        values.put(MyDbHelper.KOLLEGE_COLUMN_STATUS, v5);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_PERSONALTYP, v3);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_GEBURTSTAG, v4);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_STRASSE, v5);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_PLZ, v6);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_TELEFON, v7);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_EMAIL, v8);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_STANDORT, v9);
+        values.put(MyDbHelper.KOLLEGE_COLUMN_PASSWORT, v10);
+
 
         database.update(MyDbHelper.TABLE_KOLLEGE,
                 values,
@@ -120,37 +144,37 @@ public class DataSource_Kollege {
     private Kollege cursorToKollege(Cursor cursor) {
 
 
-
-    if(cursor.getCount()==0){
-        //Log.d(LOG_TAG, "Keinen Kollegen mit der gewünschten Id gefunden");
-        return null;
-    }
-
+        if (cursor.getCount() == 0) {
+            //Log.d(LOG_TAG, "Keinen Kollegen mit der gewünschten Id gefunden");
+            return null;
+        }
 
 
         int id0 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_ID);
         int id1 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_VORNAME);
         int id2 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_NACHNAME);
-        int id3 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_PASSWORT);
-        int id4 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_KUERZEL);
-        int id5 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_STATUS);
+        int id3 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_PERSONALTYP);
+        int id4 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_GEBURTSTAG);
+        int id5 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_STRASSE);
+        int id6 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_PLZ);
+        int id7 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_TELEFON);
+        int id8 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_EMAIL);
+        int id9 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_STANDORT);
+        int id10 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_PASSWORT);
 
+        int id = cursor.getInt(id0);
+        String q1 = cursor.getString(id1);
+        String q2 = cursor.getString(id2);
+        String q3 = cursor.getString(id3);
+        String q4 = cursor.getString(id4);
+        String q5 = cursor.getString(id5);
+        String q6 = cursor.getString(id6);
+        String q7 = cursor.getString(id7);
+        String q8 = cursor.getString(id8);
+        String q9 = cursor.getString(id9);
+        String q10 = cursor.getString(id10);
 
-
-
-            //Log.d(LOG_TAG, "cursor index: "+ id0);
-            int id = cursor.getInt(id0);
-            String q1 = cursor.getString(id1);
-            String q2 = cursor.getString(id2);
-            String q3 = cursor.getString(id3);
-            String q4 = cursor.getString(id4);
-            String q5 = cursor.getString(id5);
-
-
-            // Kollege kollege = new Kollege(id,vorname,nachname,passwort,kuerzel,status);
-
-            return new Kollege(id, q1, q2, q3, q4, q5);
-
+        return new Kollege(id, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10);
 
 
     }

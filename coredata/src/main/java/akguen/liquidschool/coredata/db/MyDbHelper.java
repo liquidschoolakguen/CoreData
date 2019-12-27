@@ -11,7 +11,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     private static final String LOG_TAG = MyDbHelper.class.getSimpleName();
 
     public static final String DB_NAME = "pauli_rot_lite.db";
-    public static final int DB_VERSION = 103;
+    public static final int DB_VERSION = 106;
 
 
     public static final String TABLE_KOLLEGE = "kollege";
@@ -19,9 +19,14 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String KOLLEGE_COLUMN_ID = "_id";
     public static final String KOLLEGE_COLUMN_VORNAME = "vorname";
     public static final String KOLLEGE_COLUMN_NACHNAME = "nachname";
+    public static final String KOLLEGE_COLUMN_PERSONALTYP = "personaltyp";
+    public static final String KOLLEGE_COLUMN_GEBURTSTAG = "geburtstag";
+    public static final String KOLLEGE_COLUMN_STRASSE = "strasse";
+    public static final String KOLLEGE_COLUMN_PLZ = "plz";
+    public static final String KOLLEGE_COLUMN_TELEFON = "telefon";
+    public static final String KOLLEGE_COLUMN_EMAIL = "email";
+    public static final String KOLLEGE_COLUMN_STANDORT = "standort";
     public static final String KOLLEGE_COLUMN_PASSWORT = "passwort";
-    public static final String KOLLEGE_COLUMN_KUERZEL = "kuerzel";
-    public static final String KOLLEGE_COLUMN_STATUS = "status";
 
     public static final String SQL_CREATE_KOLLEGE =
             "CREATE TABLE " + TABLE_KOLLEGE +
@@ -29,9 +34,14 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
                     KOLLEGE_COLUMN_VORNAME + " TEXT NULL, " +
                     KOLLEGE_COLUMN_NACHNAME + " TEXT NOT NULL, " +
-                    KOLLEGE_COLUMN_PASSWORT + " TEXT NOT NULL, " +
-                    KOLLEGE_COLUMN_KUERZEL + " TEXT NULL, " +
-                    KOLLEGE_COLUMN_STATUS + " TEXT NULL);";
+                    KOLLEGE_COLUMN_PERSONALTYP + " TEXT NOT NULL, " +
+                    KOLLEGE_COLUMN_GEBURTSTAG + " TEXT NULL, " +
+                    KOLLEGE_COLUMN_STRASSE + " TEXT NULL, " +
+                    KOLLEGE_COLUMN_PLZ + " TEXT NULL, " +
+                    KOLLEGE_COLUMN_TELEFON + " TEXT NULL, " +
+                    KOLLEGE_COLUMN_EMAIL + " TEXT NULL, " +
+                    KOLLEGE_COLUMN_STANDORT + " TEXT NULL, " +
+                    KOLLEGE_COLUMN_PASSWORT + " TEXT NULL);";
 
 
     //------------------------------------------------------------------------------------------
@@ -106,6 +116,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String ADRESSE_COLUMN_TEL = "tel";
     public static final String ADRESSE_COLUMN_FAX = "fax";
 
+
+
     public static final String SQL_CREATE_ADRESSE =
             "CREATE TABLE " + TABLE_ADRESSE +
                     "(" + ADRESSE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -151,8 +163,10 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String TABLE_KONTAKT = "kontakt";
 
     public static final String KONTAKT_COLUMN_ID = "_id";
-    public static final String KONTAKT_COLUMN_MOBIL = "mobil";
+
     public static final String KONTAKT_COLUMN_MAIL = "mail";
+
+    public static final String ADRESSE_COLUMN_THEMA_COLUMN_ID = "thema_id";
 
     public static final String SQL_CREATE_KONTAKT =
             "CREATE TABLE " + TABLE_KONTAKT +

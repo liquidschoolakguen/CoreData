@@ -29,11 +29,15 @@ public class DataSource_Kollege_Standort {
             MyDbHelper.KOLLEGE_COLUMN_ID,
             MyDbHelper.KOLLEGE_COLUMN_VORNAME,
             MyDbHelper.KOLLEGE_COLUMN_NACHNAME,
-            MyDbHelper.KOLLEGE_COLUMN_PASSWORT,
-            MyDbHelper.KOLLEGE_COLUMN_KUERZEL,
-            MyDbHelper.KOLLEGE_COLUMN_STATUS
-            
-            
+            MyDbHelper.KOLLEGE_COLUMN_PERSONALTYP,
+            MyDbHelper.KOLLEGE_COLUMN_GEBURTSTAG,
+            MyDbHelper.KOLLEGE_COLUMN_STRASSE,
+            MyDbHelper.KOLLEGE_COLUMN_PLZ,
+            MyDbHelper.KOLLEGE_COLUMN_TELEFON,
+            MyDbHelper.KOLLEGE_COLUMN_EMAIL,
+            MyDbHelper.KOLLEGE_COLUMN_STANDORT,
+            MyDbHelper.KOLLEGE_COLUMN_PASSWORT
+
     };
 
     private String[] standortColumns = {
@@ -200,9 +204,14 @@ public class DataSource_Kollege_Standort {
         int id0 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_ID);
         int id1 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_VORNAME);
         int id2 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_NACHNAME);
-        int id3 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_PASSWORT);
-        int id4 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_KUERZEL);
-        int id5 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_STATUS);
+        int id3 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_PERSONALTYP);
+        int id4 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_GEBURTSTAG);
+        int id5 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_STRASSE);
+        int id6 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_PLZ);
+        int id7 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_TELEFON);
+        int id8 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_EMAIL);
+        int id9 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_STANDORT);
+        int id10 = cursor.getColumnIndex(MyDbHelper.KOLLEGE_COLUMN_PASSWORT);
 
         int id = cursor.getInt(id0);
         String q1 = cursor.getString(id1);
@@ -210,10 +219,16 @@ public class DataSource_Kollege_Standort {
         String q3 = cursor.getString(id3);
         String q4 = cursor.getString(id4);
         String q5 = cursor.getString(id5);
+        String q6 = cursor.getString(id6);
+        String q7 = cursor.getString(id7);
+        String q8 = cursor.getString(id8);
+        String q9 = cursor.getString(id9);
+        String q10 = cursor.getString(id10);
+
 
         // Standort standort = new Standort(id,vorname,nachname,passwort,kuerzel,status);
       //  int id, String vorname, String nachname, String rufname, String geschlecht, String status, String geburtstag, String geburtsort
-        return new Kollege(id,q1,q2,q3,q4,q5);
+        return new Kollege(id,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10);
     }
 
 
