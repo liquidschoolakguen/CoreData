@@ -14,6 +14,51 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final int DB_VERSION = 106;
 
 
+
+
+    //------------------------------------------------------------------------------------------
+
+    public static final String TABLE_SUBJEKT = "subjekt";
+
+    public static final String SUBJEKT_COLUMN_ID = "_id";
+    public static final String SUBJEKT_COLUMN_VORNAME = "vorname";
+    public static final String SUBJEKT_COLUMN_NACHNAME = "nachname";
+    public static final String SUBJEKT_COLUMN_KUERZEL = "kuerzel";
+    public static final String SUBJEKT_COLUMN_GEBURTSTAG = "geburtstag";
+    public static final String SUBJEKT_COLUMN_GEBURTSORT = "geburtsort";
+    public static final String SUBJEKT_COLUMN_NATIONALITAET = "nationalitaet";
+    public static final String SUBJEKT_COLUMN_BENUTZERNAME = "benutzername";
+    public static final String SUBJEKT_COLUMN_BENUTZERPASSWORT = "benutzerpasswort";
+    public static final String SUBJEKT_COLUMN_SCHULPFAD = "schulpfad";
+    public static final String SUBJEKT_COLUMN_AKTIV = "aktiv";
+    public static final String SUBJEKT_COLUMN_TYP_ = "typ_";
+
+
+    public static final String SQL_CREATE_SUBJEKT =
+            "CREATE TABLE " + TABLE_SUBJEKT +
+                    "(" + SUBJEKT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+
+                    SUBJEKT_COLUMN_VORNAME + " TEXT NULL, " +
+                    SUBJEKT_COLUMN_NACHNAME + " TEXT NULL, " +
+                    SUBJEKT_COLUMN_KUERZEL + " TEXT NULL, " +
+                    SUBJEKT_COLUMN_GEBURTSTAG + " TEXT NULL, " +
+                    SUBJEKT_COLUMN_GEBURTSORT + " TEXT NULL, " +
+                    SUBJEKT_COLUMN_NATIONALITAET + " TEXT NULL, " +
+                    SUBJEKT_COLUMN_BENUTZERNAME + " TEXT NULL, " +
+                    SUBJEKT_COLUMN_BENUTZERPASSWORT + " TEXT NULL, " +
+                    SUBJEKT_COLUMN_SCHULPFAD + " TEXT NULL, " +
+                    SUBJEKT_COLUMN_AKTIV + " TINYINT NULL, " +
+                    SUBJEKT_COLUMN_TYP_ + " TEXT NULL);";
+
+
+
+
+    //------------------------------------------------------------------------------------------
+
+
+
+
+
     public static final String TABLE_KOLLEGE = "kollege";
 
     public static final String KOLLEGE_COLUMN_ID = "_id";
@@ -85,7 +130,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
     public static final String STANDORT_COLUMN_ID = "_id";
     public static final String STANDORT_COLUMN_NAME = "name";
-    public static final String STANDORT_COLUMN_KONTAKTPERSON = "kontaktperson";
+    public static final String STANDORT_COLUMN_KONTAKTPERSON = "subjektperson";
     public static final String STANDORT_COLUMN_STANDORTEMAIL = "standortemail";
     public static final String STANDORT_COLUMN_HAUPTSTANDORT = "hauptstandort";
     public static final String STANDORT_COLUMN_STADTTEIL = "stadtteil";
@@ -158,23 +203,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     SCHUELER_COLUMN_GEBURTSORT + " TEXT);";
 
 
-    //------------------------------------------------------------------------------------------
-
-    public static final String TABLE_KONTAKT = "kontakt";
-
-    public static final String KONTAKT_COLUMN_ID = "_id";
-
-    public static final String KONTAKT_COLUMN_MAIL = "mail";
-
-    public static final String ADRESSE_COLUMN_THEMA_COLUMN_ID = "thema_id";
-
-    public static final String SQL_CREATE_KONTAKT =
-            "CREATE TABLE " + TABLE_KONTAKT +
-                    "(" + KONTAKT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-
-                    KONTAKT_COLUMN_MOBIL + " TEXT, " +
-                    KONTAKT_COLUMN_MAIL + "  TEXT);";
-
+    
 
     //------------------------------------------------------------------------------------------
 
@@ -554,7 +583,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String SQL_DROP_STANDORT = "DROP TABLE IF EXISTS " + TABLE_STANDORT;
     public static final String SQL_DROP_ADRESSE = "DROP TABLE IF EXISTS " + TABLE_ADRESSE;
     public static final String SQL_DROP_SCHUELER = "DROP TABLE IF EXISTS " + TABLE_SCHUELER;
-    public static final String SQL_DROP_KONTAKT = "DROP TABLE IF EXISTS " + TABLE_KONTAKT;
+    public static final String SQL_DROP_SUBJEKT = "DROP TABLE IF EXISTS " + TABLE_SUBJEKT;
     public static final String SQL_DROP_ANGEHOERIGER = "DROP TABLE IF EXISTS " + TABLE_ANGEHOERIGER;
     public static final String SQL_DROP_VORFALL = "DROP TABLE IF EXISTS " + TABLE_VORFALL;
     public static final String SQL_DROP_VERGEHEN = "DROP TABLE IF EXISTS " + TABLE_VERGEHEN;
@@ -605,8 +634,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
             Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_ADRESSE + " angelegt.");
             db.execSQL(SQL_CREATE_ADRESSE);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_KONTAKT + " angelegt.");
-            db.execSQL(SQL_CREATE_KONTAKT);
+            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SUBJEKT + " angelegt.");
+            db.execSQL(SQL_CREATE_SUBJEKT);
 
             Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_ANGEHOERIGER + " angelegt.");
             db.execSQL(SQL_CREATE_ANGEHOERIGER);
@@ -672,7 +701,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DROP_STANDORT);
         db.execSQL(SQL_DROP_ADRESSE);
         db.execSQL(SQL_DROP_SCHUELER);
-        db.execSQL(SQL_DROP_KONTAKT);
+        db.execSQL(SQL_DROP_SUBJEKT);
         db.execSQL(SQL_DROP_ANGEHOERIGER);
         db.execSQL(SQL_DROP_VORFALL);
         db.execSQL(SQL_DROP_VERGEHEN);
