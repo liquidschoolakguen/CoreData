@@ -2,6 +2,7 @@ package akguen.liquidschool.coredata.db;
 
 import android.support.v7.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -213,47 +214,57 @@ public class Controller extends AppCompatActivity {
                 s.setVisibility(2);
 
             } else {
+                s.setVisibility(0);
 
-                Gruppe2 toCheck = gruppe2;
-
-                ds_gruppe2 = new DataSource_Gruppe2(this);
-                ds_gruppe2.open();
-
-                System.out.print("++++++++++++++++++++++++++++++++++++++++++++++");
-                while (true) {
-                    System.out.print("Enter: " + toCheck.getStringId());
+                for (Gruppe2 gg : holeAlleVäter(gruppe2)) {
 
 
-                    if (toCheck.getStringId().equals("main")) {
+                    if (s.getNeed().equals(gg.getStringId())) {
+                        s.setVisibility(1);
 
-                        System.out.print("+++++++++++++++++++++++Ende+++++++++++++++++++");
+                        System.out.print("++++++++++++++++Gefunden Ende+++++++++++++++++");
+
                         break;
                     }
-
-
-                    toCheck = ds_gruppe2.getGruppe2ByStringId(toCheck.getVaterStringId());
-
-
-                    if (s.getNeed().equals(toCheck.getStringId())) {
-                        s.setVisibility(2);
-
-                    }
-
-
                 }
-                ds_gruppe2.close();
-
-
-                s.setVisibility(1);
             }
-
-
         }
-
 
         return separatorList;
     }
 
+
+    public List<Gruppe2> holeAlleVäter(Gruppe2 g) {
+        ds_gruppe2 = new DataSource_Gruppe2(this);
+        ds_gruppe2.open();
+
+        List<Gruppe2> väter = new ArrayList<Gruppe2>();
+
+        Gruppe2 toCheck = g;
+        System.out.print("++++++++++++++++++++++++++++++++++++++++++++++");
+        while (true) {
+            System.out.print("Enter: " + toCheck.getStringId());
+
+
+            if (toCheck.getStringId().equals("main")) {
+
+                System.out.print("++++++++++++++++++main Ende+++++++++++++++++++");
+                break;
+            }
+
+
+            toCheck = ds_gruppe2.getGruppe2ByStringId(toCheck.getVaterStringId());
+
+
+            väter.add(toCheck);
+
+
+        }
+
+        ds_gruppe2.close();
+
+        return väter;
+    }
 
     public String getCheckedRadioFromSeparator(Separator s) {
 
@@ -346,6 +357,70 @@ public class Controller extends AppCompatActivity {
         if (goodPossible) {
 
             ss.setPossible(possibleGruppe.getStringId());
+
+
+            ds_separator = new DataSource_Separator(this);
+            ds_separator.open();
+            Separator h = ds_separator.createSeparator(ss.getStringId(), ss.getName(), ss.getNeed(), ss.getPossible());
+            ds_separator.close();
+
+
+            ds_radio = new DataSource_Radio(this);
+            ds_radio.open();
+            for (String radioName : radioNames) {
+
+                ds_radio.createRadio(radioName, radioName, h.getStringId());
+
+            }
+            ds_radio.close();
+
+
+        }
+
+
+    }
+
+
+    public void buildSeparatorWithRadios2(List<String> radioNames, String sepName, Gruppe2 neededGruppe2, Gruppe2 possibleGruppe2) {
+
+        Separator ss = new Separator();
+        ss.setName(sepName);
+
+
+        Collections.sort(radioNames);
+        String sep_id = "";
+        for (String v : radioNames) {
+            sep_id = sep_id + v + "+";
+
+        }
+
+        sep_id = sep_id.substring(0, sep_id.length() - 1);
+
+        ss.setStringId(sep_id);
+        ss.setNeed(neededGruppe2.getStringId());
+
+
+        boolean goodPossible = false;
+
+
+        if (possibleGruppe2.getStringId().equals(neededGruppe2.getStringId())) {
+            goodPossible = true;
+        } else {
+
+
+            for (Gruppe2 ggg : holeAlleVäter(neededGruppe2)) {
+                if (possibleGruppe2.getStringId().equals(neededGruppe2.getStringId())) {
+                    goodPossible = true;
+                    break;
+
+                }
+
+            }
+        }
+
+        if (goodPossible) {
+
+            ss.setPossible(possibleGruppe2.getStringId());
 
 
             ds_separator = new DataSource_Separator(this);

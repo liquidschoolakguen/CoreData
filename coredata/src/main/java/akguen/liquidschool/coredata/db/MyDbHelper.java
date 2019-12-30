@@ -11,7 +11,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     private static final String LOG_TAG = MyDbHelper.class.getSimpleName();
 
     public static final String DB_NAME = "pauli_rot_lite.db";
-    public static final int DB_VERSION = 108;
+    public static final int DB_VERSION = 109;
 
 
 //------------------------------------------------------------------------------------------
@@ -103,7 +103,12 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     GRUPPE2_COLUMN_NAME + " TEXT, " +
                     GRUPPE2_COLUMN_EXTERNNAME + " TEXT, " +
 
-                    GRUPPE2_COLUMN_VATERSTRINGID + " TEXT);";
+                    GRUPPE2_COLUMN_VATERSTRINGID + " TEXT, " +
+
+
+                    " FOREIGN KEY " + "(" + GRUPPE2_COLUMN_VATERSTRINGID + ")" + " REFERENCES " + TABLE_GRUPPE2 + "(" + GRUPPE2_COLUMN_STRINGID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE " +
+
+                    ");";
 
 
 
@@ -422,7 +427,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     "(" + LERNGRUPPE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
                     LERNGRUPPE_COLUMN_NAME + " TEXT, " +
-                    LERNGRUPPE_COLUMN_LERNFORM_COLUMN_ID + "  INTEGER, " +
+                    LERNGRUPPE_COLUMN_LERNFORM_COLUMN_ID + " INTEGER, " +
 
                     " FOREIGN KEY " + "(" + LERNGRUPPE_COLUMN_LERNFORM_COLUMN_ID + ")" + " REFERENCES " + TABLE_LERNFORM + "(" + LERNFORM_COLUMN_ID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE " +
 
@@ -770,6 +775,10 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
            // Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_KOLLEGE_STANDORT + " angelegt.");
             db.execSQL(SQL_CREATE_KOLLEGE_STANDORT);
+
+            // Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_KOLLEGE_STANDORT + " angelegt.");
+            db.execSQL(SQL_CREATE_KOLLEGE_SCHUELER);
+
 
             //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHUELER_ANGEHOERIGER + " angelegt.");
             db.execSQL(SQL_CREATE_SCHUELER_ANGEHOERIGER);
