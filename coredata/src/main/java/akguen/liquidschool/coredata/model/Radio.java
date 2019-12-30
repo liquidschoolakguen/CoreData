@@ -17,7 +17,9 @@ public class Radio {
         this.separator_id = separator_id;
     }
 
+    public Radio(){
 
+    }
     public long getId() {
         return id;
     }

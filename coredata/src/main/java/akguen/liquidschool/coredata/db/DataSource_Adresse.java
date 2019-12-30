@@ -14,7 +14,7 @@ import akguen.liquidschool.coredata.model.*;
 
 public class DataSource_Adresse {
 
-    // knummer 1 und 127450802
+    // knummer 1 und 1  27450802
     private static final String LOG_TAG = DataSource_Adresse.class.getSimpleName();
 
     private SQLiteDatabase database;

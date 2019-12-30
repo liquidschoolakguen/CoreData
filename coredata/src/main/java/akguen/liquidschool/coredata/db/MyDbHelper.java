@@ -307,13 +307,15 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String SEPARATOR_COLUMN_STRINGID = "stringid";
     public static final String SEPARATOR_COLUMN_NAME = "name";
     public static final String SEPARATOR_COLUMN_NEED = "need";
+    public static final String SEPARATOR_COLUMN_POSSIBLE = "possible";
     public static final String SQL_CREATE_SEPARATOR =
             "CREATE TABLE " + TABLE_SEPARATOR +
                     "(" + SEPARATOR_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
                     SEPARATOR_COLUMN_STRINGID + " TEXT, " +
                     SEPARATOR_COLUMN_NAME + " TEXT, " +
-                    SEPARATOR_COLUMN_NEED + " TEXT);";
+                    SEPARATOR_COLUMN_NEED + " TEXT, " +
+                    SEPARATOR_COLUMN_POSSIBLE + " TEXT);";
 
 
     //------------------------------------------------------------------------------------------

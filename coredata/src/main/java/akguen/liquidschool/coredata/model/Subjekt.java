@@ -1,7 +1,7 @@
 package akguen.liquidschool.coredata.model;
 
 public class Subjekt {
-
+    // knummer 1 und 1  27450802
     private int id;
 
     private String vorname;
