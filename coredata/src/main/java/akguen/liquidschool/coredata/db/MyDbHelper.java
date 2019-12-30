@@ -81,6 +81,40 @@ public class MyDbHelper extends SQLiteOpenHelper {
     //------------------------------------------------------------------------------------------
 
 
+
+
+
+
+    public static final String TABLE_GRUPPE2 = "gruppe2";
+
+    public static final String GRUPPE2_COLUMN_ID = "_id";
+    public static final String GRUPPE2_COLUMN_STRINGID = "stringid";
+    public static final String GRUPPE2_COLUMN_NAME = "name";
+    public static final String GRUPPE2_COLUMN_EXTERNNAME = "externname";
+    public static final String GRUPPE2_COLUMN_VATERSTRINGID = "vaterstringid";
+
+
+
+    public static final String SQL_CREATE_GRUPPE2 =
+            "CREATE TABLE " + TABLE_GRUPPE2 +
+                    "(" + GRUPPE2_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+
+                    GRUPPE2_COLUMN_STRINGID+ " TEXT, " +
+                    GRUPPE2_COLUMN_NAME + " TEXT, " +
+                    GRUPPE2_COLUMN_EXTERNNAME + " TEXT, " +
+
+                    GRUPPE2_COLUMN_VATERSTRINGID + " TEXT);";
+
+
+
+
+
+
+    //------------------------------------------------------------------------------------------
+
+
+
+
     public static final String TABLE_KOLLEGE = "kollege";
 
     public static final String KOLLEGE_COLUMN_ID = "_id";
@@ -612,7 +646,9 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
 
     //------------------------------------------------------------------------------------------
-    public static final String SQL_DROP_GRUPPE = "DROP TABLE IF EXISTS " + TABLE_KOLLEGE;
+    public static final String SQL_DROP_GRUPPE = "DROP TABLE IF EXISTS " + TABLE_GRUPPE;
+    public static final String SQL_DROP_GRUPPE2 = "DROP TABLE IF EXISTS " + TABLE_GRUPPE2;
+
     public static final String SQL_DROP_KOLLEGE = "DROP TABLE IF EXISTS " + TABLE_KOLLEGE;
     public static final String SQL_DROP_SCHULVERBUND = "DROP TABLE IF EXISTS " + TABLE_SCHULVERBUND;
     public static final String SQL_DROP_STANDORT = "DROP TABLE IF EXISTS " + TABLE_STANDORT;
@@ -661,7 +697,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
 
             db.execSQL(SQL_CREATE_GRUPPE);
-
+            db.execSQL(SQL_CREATE_GRUPPE2);
             // Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_KOLLEGE + " angelegt.");
             db.execSQL(SQL_CREATE_KOLLEGE);
 
@@ -750,6 +786,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         //Log.d(LOG_TAG, "Die Tabelle mit Versionsnummer " + oldVersion + " wird entfernt.");
 
         db.execSQL(SQL_DROP_GRUPPE);
+        db.execSQL(SQL_DROP_GRUPPE2);
         db.execSQL(SQL_DROP_KOLLEGE);
         db.execSQL(SQL_DROP_SCHULVERBUND);
         db.execSQL(SQL_DROP_STANDORT);

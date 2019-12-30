@@ -7,6 +7,7 @@ import java.util.List;
 
 import akguen.liquidschool.coredata.model.Gruppe;
 
+import akguen.liquidschool.coredata.model.Gruppe2;
 import akguen.liquidschool.coredata.model.Radio;
 import akguen.liquidschool.coredata.model.Separator;
 
@@ -16,6 +17,8 @@ public class Controller extends AppCompatActivity {
     private DataSource_Gruppe ds_gruppe;
     private DataSource_Radio ds_radio;
 
+
+    private DataSource_Gruppe2 ds_gruppe2;
 
     public List<Separator> getVisibleSeparatorsOfGruppe(Gruppe gruppe) {
         ds_separator = new DataSource_Separator(this);
@@ -27,7 +30,7 @@ public class Controller extends AppCompatActivity {
         for (Separator s : separatorList) {
             boolean passt = false;
 
-            if (s.getNeed().equals(gruppe.getId())) {
+            if (s.getNeed().equals(gruppe.getStringId())) {
                 s.setVisibility(2);
 
             } else if (s.getNeed().equals(gruppe.getS1()) ||
@@ -87,7 +90,7 @@ public class Controller extends AppCompatActivity {
 
             ds_gruppe = new DataSource_Gruppe(this);
             ds_gruppe.open();
-            ds_gruppe.createGruppe(n.getStringId(),n.getName(),n.getExternName(),n.getS1(),n.getS2(),n.getS3(),n.getS4(),n.getS5(),n.getS6(),n.getS7(),n.getS8(),n.getS9(),n.getS10());
+            ds_gruppe.createGruppe(n.getStringId(), n.getName(), n.getExternName(), n.getS1(), n.getS2(), n.getS3(), n.getS4(), n.getS5(), n.getS6(), n.getS7(), n.getS8(), n.getS9(), n.getS10());
             ds_gruppe.close();
 
 
@@ -140,16 +143,118 @@ public class Controller extends AppCompatActivity {
         }
 
 
-
         ds_gruppe = new DataSource_Gruppe(this);
         ds_gruppe.open();
-        ds_gruppe.createGruppe(n.getStringId(),n.getName(),n.getExternName(),n.getS1(),n.getS2(),n.getS3(),n.getS4(),n.getS5(),n.getS6(),n.getS7(),n.getS8(),n.getS9(),n.getS10());
+        ds_gruppe.createGruppe(n.getStringId(), n.getName(), n.getExternName(), n.getS1(), n.getS2(), n.getS3(), n.getS4(), n.getS5(), n.getS6(), n.getS7(), n.getS8(), n.getS9(), n.getS10());
         ds_gruppe.close();
 
 
+    }
+
+
+    public void buildGruppe2(Gruppe2 vaterGruppe, Separator s) {
+
+
+        Gruppe2 n = new Gruppe2();
+
+        if (s == null) {
+
+            // ohne Seperator keine neue Gruppe, VaterGruppe wird zurückgegeben
+
+            return;
+        }
+
+        if (vaterGruppe == null) {
+
+            // erste Gruppe
+            n.setStringId("main");
+            n.setName("main");
+            n.setExternName("liquidschool Gruppe");
+
+            n.setVaterStringId("");
+
+
+            ds_gruppe2 = new DataSource_Gruppe2(this);
+            ds_gruppe2.open();
+            ds_gruppe2.createGruppe2(n.getStringId(), n.getName(), n.getExternName(), n.getVaterStringId());
+            ds_gruppe2.close();
+
+
+            return;
+
+        }
+
+
+        n.setStringId(createGen(s));
+        n.setExternName(getCheckedRadioFromSeparator(s) + " Gruppe");
+
+        n.setVaterStringId(vaterGruppe.getStringId());
+
+        ds_gruppe2 = new DataSource_Gruppe2(this);
+        ds_gruppe2.open();
+        ds_gruppe2.createGruppe2(n.getStringId(), n.getName(), n.getExternName(), n.getVaterStringId());
+        ds_gruppe2.close();
 
 
     }
+
+
+    public List<Separator> getVisibleSeparatorsOfGruppe2(Gruppe2 gruppe2) {
+        ds_separator = new DataSource_Separator(this);
+        ds_separator.open();
+        List<Separator> separatorList = ds_separator.getAllSeparators();
+        ds_separator.close();
+
+
+        for (Separator s : separatorList) {
+            boolean passt = false;
+
+            if (s.getNeed().equals(gruppe2.getStringId())) {
+                s.setVisibility(2);
+
+            } else {
+
+                Gruppe2 toCheck = gruppe2;
+
+                ds_gruppe2 = new DataSource_Gruppe2(this);
+                ds_gruppe2.open();
+
+                System.out.print("++++++++++++++++++++++++++++++++++++++++++++++");
+                while (true) {
+                    System.out.print("Enter: " + toCheck.getStringId());
+
+
+                    if (toCheck.getStringId().equals("main")) {
+
+                        System.out.print("+++++++++++++++++++++++Ende+++++++++++++++++++");
+                        break;
+                    }
+
+
+                    toCheck = ds_gruppe2.getGruppe2ByStringId(toCheck.getVaterStringId());
+
+
+                    if (s.getNeed().equals(toCheck.getStringId())) {
+                        s.setVisibility(2);
+
+                    }
+
+
+                }
+                ds_gruppe2.close();
+
+
+                s.setVisibility(1);
+            }
+
+
+        }
+
+
+        return separatorList;
+    }
+
+
     public String getCheckedRadioFromSeparator(Separator s) {
 
         ds_separator = new DataSource_Separator(this);
@@ -159,9 +264,9 @@ public class Controller extends AppCompatActivity {
 
 
         for (Radio r : radioList) {
-            if(r.isChecked()){
+            if (r.isChecked()) {
 
-              return r.getName();
+                return r.getName();
             }
 
         }
@@ -259,10 +364,7 @@ public class Controller extends AppCompatActivity {
             ds_radio.close();
 
 
-
-
         }
-
 
 
     }
