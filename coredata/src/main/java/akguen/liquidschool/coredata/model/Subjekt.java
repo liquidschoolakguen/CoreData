@@ -8,32 +8,28 @@ public class Subjekt {
     private String nachname;
     private String kürzel;
 
-    private String geburtstag;
-    private String geburtsort;
-    private String nationalität;
+   // private String geburtstag;
+   // private String geburtsort;
+   // private String nationalität;
 
     private String benutzername;
     private String benutzerpasswort;
 
-    private String schulpfad;
-    private boolean aktiv;
-    private String typ_;
+   // private String schulpfad;
+    //private boolean aktiv = false;
+    //private String typ_;
+    //private boolean männlich = false;
 
 
-    public Subjekt(int id, String vorname, String nachname, String kürzel, String geburtstag, String geburtsort, String nationalität, String benutzername, String benutzerpasswort, String schulpfad, boolean aktiv, String typ_) {
+
+    public Subjekt(int id, String vorname, String nachname, String kürzel, String benutzername, String benutzerpasswort) {
 
         this.id = id;
         this.vorname = vorname;
         this.nachname = nachname;
         this.kürzel = kürzel;
-        this.geburtstag = geburtstag;
-        this.geburtsort = geburtsort;
-        this.nationalität = nationalität;
         this.benutzername = benutzername;
         this.benutzerpasswort = benutzerpasswort;
-        this.schulpfad = schulpfad;
-        this.aktiv = aktiv;
-        this.typ_ = typ_;
 
     }
 
@@ -41,6 +37,8 @@ public class Subjekt {
 
 
     }
+
+
 
 
     public String getKürzel() {
@@ -75,29 +73,6 @@ public class Subjekt {
         this.nachname = nachname;
     }
 
-    public String getGeburtstag() {
-        return geburtstag;
-    }
-
-    public void setGeburtstag(String geburtstag) {
-        this.geburtstag = geburtstag;
-    }
-
-    public String getGeburtsort() {
-        return geburtsort;
-    }
-
-    public void setGeburtsort(String geburtsort) {
-        this.geburtsort = geburtsort;
-    }
-
-    public String getNationalität() {
-        return nationalität;
-    }
-
-    public void setNationalität(String nationalität) {
-        this.nationalität = nationalität;
-    }
 
     public String getBenutzername() {
         return benutzername;
@@ -115,28 +90,4 @@ public class Subjekt {
         this.benutzerpasswort = benutzerpasswort;
     }
 
-    public String getSchulpfad() {
-        return schulpfad;
-    }
-
-    public void setSchulpfad(String schulpfad) {
-        this.schulpfad = schulpfad;
-    }
-
-
-    public boolean isAktiv() {
-        return aktiv;
-    }
-
-    public void setAktiv(boolean aktiv) {
-        this.aktiv = aktiv;
-    }
-
-    public String getTyp_() {
-        return typ_;
-    }
-
-    public void setTyp_(String typ_) {
-        this.typ_ = typ_;
-    }
 }

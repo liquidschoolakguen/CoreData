@@ -11,9 +11,45 @@ public class MyDbHelper extends SQLiteOpenHelper {
     private static final String LOG_TAG = MyDbHelper.class.getSimpleName();
 
     public static final String DB_NAME = "pauli_rot_lite.db";
-    public static final int DB_VERSION = 106;
+    public static final int DB_VERSION = 108;
 
 
+//------------------------------------------------------------------------------------------
+
+    public static final String TABLE_GRUPPE = "gruppe";
+
+    public static final String GRUPPE_COLUMN_ID = "_id";
+    public static final String GRUPPE_COLUMN_NAME = "name";
+    public static final String GRUPPE_COLUMN_EXTERNNAME = "externname";
+    public static final String GRUPPE_COLUMN_S1 = "s1";
+    public static final String GRUPPE_COLUMN_S2 = "s2";
+    public static final String GRUPPE_COLUMN_S3 = "s3";
+    public static final String GRUPPE_COLUMN_S4 = "s4";
+    public static final String GRUPPE_COLUMN_S5 = "s5";
+    public static final String GRUPPE_COLUMN_S6 = "s6";
+    public static final String GRUPPE_COLUMN_S7 = "s7";
+    public static final String GRUPPE_COLUMN_S8 = "s8";
+    public static final String GRUPPE_COLUMN_S9 = "s9";
+    public static final String GRUPPE_COLUMN_S10 = "s10";
+
+
+    public static final String SQL_CREATE_GRUPPE =
+            "CREATE TABLE " + TABLE_GRUPPE +
+                    "(" + GRUPPE_COLUMN_ID + " TEXT PRIMARY KEY, " +
+
+                    GRUPPE_COLUMN_NAME + " TEXT, " +
+                    GRUPPE_COLUMN_EXTERNNAME + " TEXT, " +
+
+                    GRUPPE_COLUMN_S1 + " TEXT, " +
+                    GRUPPE_COLUMN_S2 + " TEXT, " +
+                    GRUPPE_COLUMN_S3 + " TEXT, " +
+                    GRUPPE_COLUMN_S4 + " TEXT, " +
+                    GRUPPE_COLUMN_S5 + " TEXT, " +
+                    GRUPPE_COLUMN_S6 + " TEXT, " +
+                    GRUPPE_COLUMN_S7 + " TEXT, " +
+                    GRUPPE_COLUMN_S8 + " TEXT, " +
+                    GRUPPE_COLUMN_S9 + " TEXT, " +
+                    GRUPPE_COLUMN_S10 + " TEXT);";
 
 
     //------------------------------------------------------------------------------------------
@@ -24,39 +60,23 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String SUBJEKT_COLUMN_VORNAME = "vorname";
     public static final String SUBJEKT_COLUMN_NACHNAME = "nachname";
     public static final String SUBJEKT_COLUMN_KUERZEL = "kuerzel";
-    public static final String SUBJEKT_COLUMN_GEBURTSTAG = "geburtstag";
-    public static final String SUBJEKT_COLUMN_GEBURTSORT = "geburtsort";
-    public static final String SUBJEKT_COLUMN_NATIONALITAET = "nationalitaet";
     public static final String SUBJEKT_COLUMN_BENUTZERNAME = "benutzername";
     public static final String SUBJEKT_COLUMN_BENUTZERPASSWORT = "benutzerpasswort";
-    public static final String SUBJEKT_COLUMN_SCHULPFAD = "schulpfad";
-    public static final String SUBJEKT_COLUMN_AKTIV = "aktiv";
-    public static final String SUBJEKT_COLUMN_TYP_ = "typ_";
 
 
     public static final String SQL_CREATE_SUBJEKT =
             "CREATE TABLE " + TABLE_SUBJEKT +
                     "(" + SUBJEKT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
-                    SUBJEKT_COLUMN_VORNAME + " TEXT NULL, " +
-                    SUBJEKT_COLUMN_NACHNAME + " TEXT NULL, " +
-                    SUBJEKT_COLUMN_KUERZEL + " TEXT NULL, " +
-                    SUBJEKT_COLUMN_GEBURTSTAG + " TEXT NULL, " +
-                    SUBJEKT_COLUMN_GEBURTSORT + " TEXT NULL, " +
-                    SUBJEKT_COLUMN_NATIONALITAET + " TEXT NULL, " +
-                    SUBJEKT_COLUMN_BENUTZERNAME + " TEXT NULL, " +
-                    SUBJEKT_COLUMN_BENUTZERPASSWORT + " TEXT NULL, " +
-                    SUBJEKT_COLUMN_SCHULPFAD + " TEXT NULL, " +
-                    SUBJEKT_COLUMN_AKTIV + " TINYINT NULL, " +
-                    SUBJEKT_COLUMN_TYP_ + " TEXT NULL);";
+                    SUBJEKT_COLUMN_VORNAME + " TEXT, " +
+                    SUBJEKT_COLUMN_NACHNAME + " TEXT, " +
+                    SUBJEKT_COLUMN_KUERZEL + " TEXT, " +
 
-
+                    SUBJEKT_COLUMN_BENUTZERNAME + " TEXT, " +
+                    SUBJEKT_COLUMN_BENUTZERPASSWORT + " TEXT);";
 
 
     //------------------------------------------------------------------------------------------
-
-
-
 
 
     public static final String TABLE_KOLLEGE = "kollege";
@@ -77,16 +97,16 @@ public class MyDbHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + TABLE_KOLLEGE +
                     "(" + KOLLEGE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
-                    KOLLEGE_COLUMN_VORNAME + " TEXT NULL, " +
-                    KOLLEGE_COLUMN_NACHNAME + " TEXT NOT NULL, " +
-                    KOLLEGE_COLUMN_PERSONALTYP + " TEXT NOT NULL, " +
-                    KOLLEGE_COLUMN_GEBURTSTAG + " TEXT NULL, " +
-                    KOLLEGE_COLUMN_STRASSE + " TEXT NULL, " +
-                    KOLLEGE_COLUMN_PLZ + " TEXT NULL, " +
-                    KOLLEGE_COLUMN_TELEFON + " TEXT NULL, " +
-                    KOLLEGE_COLUMN_EMAIL + " TEXT NULL, " +
-                    KOLLEGE_COLUMN_STANDORT + " TEXT NULL, " +
-                    KOLLEGE_COLUMN_PASSWORT + " TEXT NULL);";
+                    KOLLEGE_COLUMN_VORNAME + " TEXT, " +
+                    KOLLEGE_COLUMN_NACHNAME + " TEXT, " +
+                    KOLLEGE_COLUMN_PERSONALTYP + " TEXT, " +
+                    KOLLEGE_COLUMN_GEBURTSTAG + " TEXT, " +
+                    KOLLEGE_COLUMN_STRASSE + " TEXT, " +
+                    KOLLEGE_COLUMN_PLZ + " TEXT, " +
+                    KOLLEGE_COLUMN_TELEFON + " TEXT, " +
+                    KOLLEGE_COLUMN_EMAIL + " TEXT, " +
+                    KOLLEGE_COLUMN_STANDORT + " TEXT, " +
+                    KOLLEGE_COLUMN_PASSWORT + " TEXT);";
 
 
     //------------------------------------------------------------------------------------------
@@ -162,7 +182,6 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String ADRESSE_COLUMN_FAX = "fax";
 
 
-
     public static final String SQL_CREATE_ADRESSE =
             "CREATE TABLE " + TABLE_ADRESSE +
                     "(" + ADRESSE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -202,8 +221,6 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     SCHUELER_COLUMN_GEBURTSTAG + " TEXT, " +
                     SCHUELER_COLUMN_GEBURTSORT + " TEXT);";
 
-
-    
 
     //------------------------------------------------------------------------------------------
 
@@ -263,8 +280,6 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     THEMA_COLUMN_NAME + " TEXT);";
 
 
-
-
     //------------------------------------------------------------------------------------------
 
     public static final String TABLE_RAUM = "raum";
@@ -281,6 +296,37 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     RAUM_COLUMN_HAUS + " TEXT, " +
                     RAUM_COLUMN_NAME + "  TEXT);";
 
+
+    //------------------------------------------------------------------------------------------
+
+    public static final String TABLE_SEPARATOR = "separator";
+
+    public static final String SEPARATOR_COLUMN_ID = "_id";
+    public static final String SEPARATOR_COLUMN_NAME = "name";
+    public static final String SEPARATOR_COLUMN_NEED = "need";
+    public static final String SQL_CREATE_SEPARATOR =
+            "CREATE TABLE " + TABLE_SEPARATOR +
+                    "(" + SEPARATOR_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+
+                    SEPARATOR_COLUMN_NAME + " TEXT, " +
+                    SEPARATOR_COLUMN_NEED + " TEXT);";
+
+
+    //------------------------------------------------------------------------------------------
+
+    public static final String TABLE_RADIO = "radio";
+
+    public static final String RADIO_COLUMN_ID = "_id";
+    public static final String RADIO_COLUMN_NAME = "name";
+    public static final String RADIO_COLUMN_SEPARATOR_COLUMN_ID = "separator_id";
+
+
+    public static final String SQL_CREATE_RADIO =
+            "CREATE TABLE " + TABLE_RADIO +
+                    "(" + RADIO_COLUMN_ID + " TEXT PRIMARY KEY, " +
+
+                    RADIO_COLUMN_NAME + " TEXT, " +
+                    RADIO_COLUMN_SEPARATOR_COLUMN_ID + "  TEXT);";
 
 
     //------------------------------------------------------------------------------------------
@@ -321,8 +367,6 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     LERNFORM_COLUMN_ZYKLUS + "  TEXT);";
 
 
-
-
     //------------------------------------------------------------------------------------------
 
     public static final String TABLE_LERNGRUPPE = "lerngruppe";
@@ -343,9 +387,6 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     ");";
 
 
-
-
-
     //------------------------------------------------------------------------------------------
 
     public static final String TABLE_VERGEHENGRUPPE = "vergehengruppe";
@@ -359,8 +400,6 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     "(" + VERGEHENGRUPPE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
                     VERGEHENGRUPPE_COLUMN_NAME + " TEXT);";
-
-
 
 
     //------------------------------------------------------------------------------------------
@@ -388,21 +427,6 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
                     ");";
     //------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public static final String TABLE_SP_FACH = "sp_fach";
@@ -445,9 +469,6 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     SP_FRAGMENT_COLUMN_NUMMER + " TEXT);";
 
 
-
-
-
     //------------------------------------------------------------------------------------------
 
     public static final String TABLE_RYTHMUSZELLE = "rhythmuszelle";
@@ -471,12 +492,6 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     RYTHMUSZELLE_COLUMN_BIS + " TEXT);";
 
 
-
-
-
-
-
-
     //------------------------------------------------------------------------------------------
 
     public static final String TABLE_SCHUELER_LERNGRUPPE = "schueler_lerngruppe";
@@ -492,6 +507,25 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     " PRIMARY KEY(" + SL_SCHUELER_ID + ", " + SL_LERNGRUPPE_ID + ")," +
                     " FOREIGN KEY " + "(" + SL_SCHUELER_ID + ")" + " REFERENCES " + TABLE_SCHUELER + "(" + SCHUELER_COLUMN_ID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE, " +
                     " FOREIGN KEY " + "(" + SL_LERNGRUPPE_ID + ")" + " REFERENCES " + TABLE_LERNGRUPPE + "(" + LERNGRUPPE_COLUMN_ID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE " +
+                    ");";
+
+
+
+    //------------------------------------------------------------------------------------------
+
+    public static final String TABLE_SUBJEKT_GRUPPE = "subjekt_gruppe";
+
+    public static final String SL_SUBJEKT_ID = "subjekt_id";
+    public static final String SL_GRUPPE_ID = "gruppe_id";
+
+
+    public static final String SQL_CREATE_SUBJEKT_GRUPPE =
+            "CREATE TABLE " + TABLE_SUBJEKT_GRUPPE +
+                    "(" + SL_SUBJEKT_ID + " INTEGER NOT NULL, " +
+                    SL_GRUPPE_ID + " TEXT NOT NULL," +
+                    " PRIMARY KEY(" + SL_SUBJEKT_ID + ", " + SL_GRUPPE_ID + ")," +
+                    " FOREIGN KEY " + "(" + SL_SUBJEKT_ID + ")" + " REFERENCES " + TABLE_SUBJEKT + "(" + SUBJEKT_COLUMN_ID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE, " +
+                    " FOREIGN KEY " + "(" + SL_GRUPPE_ID + ")" + " REFERENCES " + TABLE_GRUPPE + "(" + GRUPPE_COLUMN_ID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE " +
                     ");";
 
 
@@ -514,13 +548,6 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     " FOREIGN KEY " + "(" + SL_VERGEHEN_ID + ")" + " REFERENCES " + TABLE_VERGEHEN + "(" + VERGEHEN_COLUMN_ID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE, " +
                     " FOREIGN KEY " + "(" + SL_VERGEHENGRUPPE_ID + ")" + " REFERENCES " + TABLE_VERGEHENGRUPPE + "(" + VERGEHENGRUPPE_COLUMN_ID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE " +
                     ");";
-
-
-
-
-
-
-
 
 
     //------------------------------------------------------------------------------------------
@@ -577,7 +604,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
 
     //------------------------------------------------------------------------------------------
-
+    public static final String SQL_DROP_GRUPPE = "DROP TABLE IF EXISTS " + TABLE_KOLLEGE;
     public static final String SQL_DROP_KOLLEGE = "DROP TABLE IF EXISTS " + TABLE_KOLLEGE;
     public static final String SQL_DROP_SCHULVERBUND = "DROP TABLE IF EXISTS " + TABLE_SCHULVERBUND;
     public static final String SQL_DROP_STANDORT = "DROP TABLE IF EXISTS " + TABLE_STANDORT;
@@ -589,6 +616,9 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String SQL_DROP_VERGEHEN = "DROP TABLE IF EXISTS " + TABLE_VERGEHEN;
     public static final String SQL_DROP_GUELTIGKEITSBEREICH = "DROP TABLE IF EXISTS " + TABLE_GUELTIGKEITSBEREICH;
     public static final String SQL_DROP_RAUM = "DROP TABLE IF EXISTS " + TABLE_RAUM;
+    public static final String SQL_DROP_SEPARATOR = "DROP TABLE IF EXISTS " + TABLE_SEPARATOR;
+    public static final String SQL_DROP_RADIO = "DROP TABLE IF EXISTS " + TABLE_RADIO;
+
     public static final String SQL_DROP_THEMA = "DROP TABLE IF EXISTS " + TABLE_THEMA;
     public static final String SQL_DROP_LERNGRUPPE = "DROP TABLE IF EXISTS " + TABLE_LERNGRUPPE;
 
@@ -619,46 +649,55 @@ public class MyDbHelper extends SQLiteOpenHelper {
         try {
             db.execSQL("PRAGMA foreign_keys=ON");
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_KOLLEGE + " angelegt.");
+
+            db.execSQL(SQL_CREATE_GRUPPE);
+
+            // Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_KOLLEGE + " angelegt.");
             db.execSQL(SQL_CREATE_KOLLEGE);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHUELER + " angelegt.");
+            // Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHUELER + " angelegt.");
             db.execSQL(SQL_CREATE_SCHUELER);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHULVERBUND + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHULVERBUND + " angelegt.");
             db.execSQL(SQL_CREATE_SCHULVERBUND);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_STANDORT + " angelegt.");
+            // Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_STANDORT + " angelegt.");
             db.execSQL(SQL_CREATE_STANDORT);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_ADRESSE + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_ADRESSE + " angelegt.");
             db.execSQL(SQL_CREATE_ADRESSE);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SUBJEKT + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SUBJEKT + " angelegt.");
             db.execSQL(SQL_CREATE_SUBJEKT);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_ANGEHOERIGER + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_ANGEHOERIGER + " angelegt.");
             db.execSQL(SQL_CREATE_ANGEHOERIGER);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_VORFALL + " angelegt.");
+            // Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_VORFALL + " angelegt.");
             db.execSQL(SQL_CREATE_VORFALL);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_VERGEHEN + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_VERGEHEN + " angelegt.");
             db.execSQL(SQL_CREATE_VERGEHEN);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_LERNGRUPPE + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_LERNGRUPPE + " angelegt.");
             db.execSQL(SQL_CREATE_LERNGRUPPE);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_VERGEHENGRUPPE + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_VERGEHENGRUPPE + " angelegt.");
             db.execSQL(SQL_CREATE_VERGEHENGRUPPE);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_GUELTIGKEITSBEREICH + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_GUELTIGKEITSBEREICH + " angelegt.");
             db.execSQL(SQL_CREATE_GUELTIGKEITSBEREICH);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_RAUM + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_RAUM + " angelegt.");
             db.execSQL(SQL_CREATE_RAUM);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_THEMA + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_RAUM + " angelegt.");
+            db.execSQL(SQL_CREATE_SEPARATOR);
+
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_RADIO + " angelegt.");
+            db.execSQL(SQL_CREATE_RADIO);
+
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_THEMA + " angelegt.");
             db.execSQL(SQL_CREATE_THEMA);
 
 
@@ -696,6 +735,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //Log.d(LOG_TAG, "Die Tabelle mit Versionsnummer " + oldVersion + " wird entfernt.");
+
+        db.execSQL(SQL_DROP_GRUPPE);
         db.execSQL(SQL_DROP_KOLLEGE);
         db.execSQL(SQL_DROP_SCHULVERBUND);
         db.execSQL(SQL_DROP_STANDORT);
@@ -710,6 +751,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DROP_GUELTIGKEITSBEREICH);
         db.execSQL(SQL_DROP_RYTHMUSZELLE);
         db.execSQL(SQL_DROP_RAUM);
+        db.execSQL(SQL_DROP_SEPARATOR);
+        db.execSQL(SQL_DROP_RADIO);
         db.execSQL(SQL_DROP_THEMA);
         db.execSQL(SQL_DROP_LERNGRUPPE);
         db.execSQL(SQL_DROP_VERGEHENGRUPPE);

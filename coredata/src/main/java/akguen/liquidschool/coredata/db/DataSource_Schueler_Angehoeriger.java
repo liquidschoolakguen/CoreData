@@ -178,7 +178,7 @@ public class DataSource_Schueler_Angehoeriger {
 
         // Angehoeriger angehoeriger = new Angehoeriger(id,vorname,nachname,passwort,kuerzel,status);
 
-        return new Angehoeriger(id,q1,q2,q3,q4,q5);
+        return new Angehoeriger(id,q1,q2,q3,q4,q5,null,null);
     }
 
 
