@@ -2,18 +2,28 @@ package akguen.liquidschool.coredata.model;
 
 public class Radio {
 
-
-    private String id;
+    private long id;
+    private String stringId;
     private String name;
     private String separator_id;
 
     private boolean checked = false; //Nicht für die Datenbank, sondern nureine Hilfsvariable beim Build einer Gruppe
 
-    public Radio(String id, String name, String separator_id) {
+    public Radio(long id, String stringId, String name, String separator_id) {
 
         this.id = id;
+        this.stringId = stringId;
         this.name = name;
         this.separator_id = separator_id;
+    }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public boolean isChecked() {
@@ -24,12 +34,12 @@ public class Radio {
         this.checked = checked;
     }
 
-    public String getId() {
-        return id;
+    public String getStringId() {
+        return stringId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setStringId(String stringId) {
+        this.stringId = stringId;
     }
 
     public String getName() {

@@ -165,7 +165,7 @@ public class DataSource_Gueltigkeitsbereich {
         while(!cursor.isAfterLast()) {
             gueltigkeitsbereich = cursorToGueltigkeitsbereich(cursor);
             gueltigkeitsbereichList.add(gueltigkeitsbereich);
-           // Log.d(LOG_TAG, "ID: " + gueltigkeitsbereich.getId() + ", Inhalt: " + gueltigkeitsbereich.toString());
+           // Log.d(LOG_TAG, "ID: " + gueltigkeitsbereich.getStringId() + ", Inhalt: " + gueltigkeitsbereich.toString());
             cursor.moveToNext();
         }
 

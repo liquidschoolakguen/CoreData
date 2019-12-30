@@ -67,7 +67,7 @@ public class DataSource_Rythmuszelle {
     }
 
     public void deleteRythmuszelle(Rythmuszelle rythmuszelle) {
-        long id = rythmuszelle.getId();
+        long id = rythmuszelle.getStringId();
 
         database.delete(MyDbHelper.TABLE_RYTHMUSZELLE,
                 MyDbHelper.RYTHMUSZELLE_COLUMN_ID + "=" + id,
@@ -159,7 +159,7 @@ public class DataSource_Rythmuszelle {
         while(!cursor.isAfterLast()) {
             rythmuszelle = cursorToRythmuszelle(cursor);
             rythmuszelleList.add(rythmuszelle);
-            Log.d(LOG_TAG, "ID: " + rythmuszelle.getId() + ", Inhalt: " + rythmuszelle.toString());
+            Log.d(LOG_TAG, "ID: " + rythmuszelle.getStringId() + ", Inhalt: " + rythmuszelle.toString());
             cursor.moveToNext();
         }
 

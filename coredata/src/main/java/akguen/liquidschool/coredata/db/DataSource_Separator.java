@@ -9,6 +9,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import akguen.liquidschool.coredata.model.Gruppe;
 import akguen.liquidschool.coredata.model.Separator;
 import akguen.liquidschool.coredata.model.Radio;
 
@@ -21,6 +22,7 @@ public class DataSource_Separator {
 
     private String[] columns = {
             MyDbHelper.SEPARATOR_COLUMN_ID,
+            MyDbHelper.SEPARATOR_COLUMN_STRINGID,
             MyDbHelper.SEPARATOR_COLUMN_NAME,
             MyDbHelper.SEPARATOR_COLUMN_NEED
     };
@@ -49,10 +51,19 @@ public class DataSource_Separator {
 
     }
 
-    public Separator createSeparator(String v1, String v2) {
+    public Separator createSeparator(String v1, String v2, String v3) {
+
+        Separator gibs = getSeparatorByStringId(v1);
+        if (gibs != null) {
+
+            return gibs;
+
+        }
+
         ContentValues values = new ContentValues();
-        values.put(MyDbHelper.SEPARATOR_COLUMN_NAME, v1);
-        values.put(MyDbHelper.SEPARATOR_COLUMN_NEED, v2);
+        values.put(MyDbHelper.SEPARATOR_COLUMN_STRINGID, v1);
+        values.put(MyDbHelper.SEPARATOR_COLUMN_NAME, v2);
+        values.put(MyDbHelper.SEPARATOR_COLUMN_NEED, v3);
 
 
         long insertId = database.insert(MyDbHelper.TABLE_SEPARATOR, null, values);
@@ -69,21 +80,28 @@ public class DataSource_Separator {
     }
 
     public void deleteSeparator(Separator separator) {
-        String id = separator.getId();
+        String id = separator.getStringId();
 
         database.delete(MyDbHelper.TABLE_SEPARATOR,
                 MyDbHelper.SEPARATOR_COLUMN_ID + "=" + id,
                 null);
 
-        Log.d(LOG_TAG, "Eintrag gelöscht! ID: " + id + " Inhalt: " + separator.toString());
     }
 
-    public Separator updateSeparator(int id, String v1, String v2) {
+    public Separator updateSeparator(long id, String v1, String v2, String v3) {
 
+
+        Separator gibs = getSeparatorByStringId(v1);
+        if (gibs != null) {
+
+            return gibs;
+
+        }
 
         ContentValues values = new ContentValues();
-        values.put(MyDbHelper.SEPARATOR_COLUMN_NAME, v1);
-        values.put(MyDbHelper.SEPARATOR_COLUMN_NEED, v2);
+        values.put(MyDbHelper.SEPARATOR_COLUMN_STRINGID, v1);
+        values.put(MyDbHelper.SEPARATOR_COLUMN_NAME, v2);
+        values.put(MyDbHelper.SEPARATOR_COLUMN_NEED, v3);
 
 
         database.update(MyDbHelper.TABLE_SEPARATOR,
@@ -101,11 +119,14 @@ public class DataSource_Separator {
 
         return separator;
     }
-    public Separator getSeparatorById(int id){
+
+
+
+    public Separator getSeparatorByStringId(String stringId){
 
 
         Cursor cursor = database.query(MyDbHelper.TABLE_SEPARATOR,
-                columns, MyDbHelper.SEPARATOR_COLUMN_ID + "=" + id,
+                columns, MyDbHelper.SEPARATOR_COLUMN_STRINGID + "=" + stringId,
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -152,26 +173,24 @@ public class DataSource_Separator {
 
     private Radio cursorToRadio(Cursor cursor) {
 
-        if(cursor.getCount()==0){
-            Log.d(LOG_TAG, "cursorToRadio");
+
+        if (cursor.getCount() == 0) {
+            //Log.d(LOG_TAG, "Keinen Radio mit der gewünschten StringId gefunden");
             return null;
         }
-        Log.d(LOG_TAG, "cursorToRadio33");
         int id0 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_ID);
-        int id1 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_NAME);
-        int id2 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_SEPARATOR_COLUMN_ID);
+        int id1 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_STRINGID);
+        int id2 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_NAME);
+        int id3 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_SEPARATOR_COLUMN_ID);
 
 
-        String id = cursor.getString(id0);
+        long id = cursor.getLong(id0);
         String q1 = cursor.getString(id1);
-        String q2 =cursor.getString(id2);
+        String q2 = cursor.getString(id2);
+        String q3 = cursor.getString(id3);
 
 
-
-
-        // Radio radio = new Radio(id,vorname,nachname,passwort,kuerzel,status);
-
-        return new Radio(id,q1,q2);
+        return new Radio(id, q1, q2, q3);
     }
 
 
@@ -185,19 +204,20 @@ public class DataSource_Separator {
         }
 
         int id0 = cursor.getColumnIndex(MyDbHelper.SEPARATOR_COLUMN_ID);
-        int id1 = cursor.getColumnIndex(MyDbHelper.SEPARATOR_COLUMN_NAME);
-        int id2 = cursor.getColumnIndex(MyDbHelper.SEPARATOR_COLUMN_NEED);
+        int id1 = cursor.getColumnIndex(MyDbHelper.SEPARATOR_COLUMN_STRINGID);
+        int id2 = cursor.getColumnIndex(MyDbHelper.SEPARATOR_COLUMN_NAME);
+        int id3 = cursor.getColumnIndex(MyDbHelper.SEPARATOR_COLUMN_NEED);
 
 
-        String id = cursor.getString(id0);
+        long id = cursor.getLong(id0);
         String q1 = cursor.getString(id1);
         String q2 = cursor.getString(id2);
-
+        String q3 = cursor.getString(id3);
 
 
        // Separator separator = new Separator(id,vorname,nachname,passwort,kuerzel,status);
 
-        return new Separator(id,q1,q2);
+        return new Separator(id,q1,q2,q3);
     }
 
     public List<Separator> getAllSeparators() {
@@ -212,7 +232,6 @@ public class DataSource_Separator {
         while(!cursor.isAfterLast()) {
             separator = cursorToSeparator(cursor);
             separatorList.add(separator);
-            Log.d(LOG_TAG, "ID: " + separator.getId() + ", Inhalt: " + separator.toString());
             cursor.moveToNext();
         }
 

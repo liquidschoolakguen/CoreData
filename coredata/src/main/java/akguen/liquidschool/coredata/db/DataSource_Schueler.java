@@ -93,7 +93,7 @@ public class DataSource_Schueler {
 
         dS_Schueler.open();*/
 
-        //dS_Schueler.updateSchueler(g.getId(),g.getVorname(),g.getItemType(),g.getRufname(),g.getGeschlecht(),g.getStrasse(),g.getGeburtstag(),g.getGeburtsort());
+        //dS_Schueler.updateSchueler(g.getStringId(),g.getVorname(),g.getItemType(),g.getRufname(),g.getGeschlecht(),g.getStrasse(),g.getGeburtstag(),g.getGeburtsort());
 
 
         ContentValues values = new ContentValues();

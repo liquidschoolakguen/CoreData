@@ -19,6 +19,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String TABLE_GRUPPE = "gruppe";
 
     public static final String GRUPPE_COLUMN_ID = "_id";
+    public static final String GRUPPE_COLUMN_STRINGID = "stringid";
     public static final String GRUPPE_COLUMN_NAME = "name";
     public static final String GRUPPE_COLUMN_EXTERNNAME = "externname";
     public static final String GRUPPE_COLUMN_S1 = "s1";
@@ -35,8 +36,9 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
     public static final String SQL_CREATE_GRUPPE =
             "CREATE TABLE " + TABLE_GRUPPE +
-                    "(" + GRUPPE_COLUMN_ID + " TEXT PRIMARY KEY, " +
+                    "(" + GRUPPE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
+                    GRUPPE_COLUMN_STRINGID+ " TEXT, " +
                     GRUPPE_COLUMN_NAME + " TEXT, " +
                     GRUPPE_COLUMN_EXTERNNAME + " TEXT, " +
 
@@ -302,12 +304,14 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String TABLE_SEPARATOR = "separator";
 
     public static final String SEPARATOR_COLUMN_ID = "_id";
+    public static final String SEPARATOR_COLUMN_STRINGID = "stringid";
     public static final String SEPARATOR_COLUMN_NAME = "name";
     public static final String SEPARATOR_COLUMN_NEED = "need";
     public static final String SQL_CREATE_SEPARATOR =
             "CREATE TABLE " + TABLE_SEPARATOR +
                     "(" + SEPARATOR_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
+                    SEPARATOR_COLUMN_STRINGID + " TEXT, " +
                     SEPARATOR_COLUMN_NAME + " TEXT, " +
                     SEPARATOR_COLUMN_NEED + " TEXT);";
 
@@ -317,14 +321,16 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String TABLE_RADIO = "radio";
 
     public static final String RADIO_COLUMN_ID = "_id";
+    public static final String RADIO_COLUMN_STRINGID = "stringid";
     public static final String RADIO_COLUMN_NAME = "name";
     public static final String RADIO_COLUMN_SEPARATOR_COLUMN_ID = "separator_id";
 
 
     public static final String SQL_CREATE_RADIO =
             "CREATE TABLE " + TABLE_RADIO +
-                    "(" + RADIO_COLUMN_ID + " TEXT PRIMARY KEY, " +
+                    "(" + RADIO_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
+                    RADIO_COLUMN_STRINGID + " TEXT, " +
                     RADIO_COLUMN_NAME + " TEXT, " +
                     RADIO_COLUMN_SEPARATOR_COLUMN_ID + "  TEXT);";
 

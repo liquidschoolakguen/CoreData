@@ -2,16 +2,17 @@ package akguen.liquidschool.coredata.model;
 
 public class Separator {
 
-
-    private String id; // zusammengesetzter String aus den alphabetisch sortierten StringIds der Radios
+    private long id;
+    private String stringId; // zusammengesetzter String aus den alphabetisch sortierten StringIds der Radios
     private String name;
     private String need;
 
     private int visibility; //Nicht für die Datenbank, sondern nureine Hilfsvariable
 
-    public Separator(String id, String name, String need){
+    public Separator(long id, String stringId, String name, String need){
 
         this.id = id;
+        this.stringId = stringId;
         this.name = name;
         this.need = need;
 
@@ -38,12 +39,12 @@ public class Separator {
         this.need = need;
     }
 
-    public String getId() {
-        return id;
+    public String getStringId() {
+        return stringId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setStringId(String stringId) {
+        this.stringId = stringId;
     }
 
     public String getName() {

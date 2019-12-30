@@ -48,11 +48,11 @@ package akguen.liquidschool.coredata.model;
         this.begin = begin;
     }
 
-    public int getId() {
+    public int getStringId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setStringId(int id) {
         this.id = id;
     }
 

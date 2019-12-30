@@ -155,7 +155,7 @@ public class Controller extends AppCompatActivity {
     public String createGen(Separator s) {
 
         String gen = ""; // wird so aussehen "vormund+schüler+personal+leitung#0010"
-        String separator_id = s.getId(); // wird so aussehen "vormund+schüler+personal+leitung"
+        String separator_id = s.getStringId(); // wird so aussehen "vormund+schüler+personal+leitung"
 
 
         gen = gen + separator_id;
@@ -182,7 +182,7 @@ public class Controller extends AppCompatActivity {
         List<String> l = new ArrayList<String>();
 
         for(Radio r : radios){
-           l.add(r.getId());
+           l.add(r.getStringId());
 
         }
         Collections.sort(l);
@@ -195,7 +195,7 @@ public class Controller extends AppCompatActivity {
 
         sep_id = sep_id.substring(0, sep_id.length() - 1);
 
-       ss.setId(sep_id);
+       ss.setStringId(sep_id);
        ss.setNeed(neededGruppe.getId());
 
         return ss;

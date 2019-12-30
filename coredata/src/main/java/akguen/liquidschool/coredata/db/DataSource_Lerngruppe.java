@@ -168,7 +168,7 @@ public class DataSource_Lerngruppe {
         while(!cursor.isAfterLast()) {
             lerngruppe = cursorToLerngruppe(cursor);
             lerngruppeList.add(lerngruppe);
-            //Log.d(LOG_TAG, "ID: " + lerngruppe.getId() + ", Inhalt: " + lerngruppe.toString());
+            //Log.d(LOG_TAG, "ID: " + lerngruppe.getStringId() + ", Inhalt: " + lerngruppe.toString());
             cursor.moveToNext();
         }
 

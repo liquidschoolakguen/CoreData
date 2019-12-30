@@ -160,7 +160,7 @@ public class DataSource_Vergehengruppe {
         while(!cursor.isAfterLast()) {
             vergehengruppe = cursorToVergehengruppe(cursor);
             vergehengruppeList.add(vergehengruppe);
-            //Log.d(LOG_TAG, "ID: " + vergehengruppe.getId() + ", Inhalt: " + vergehengruppe.toString());
+            //Log.d(LOG_TAG, "ID: " + vergehengruppe.getStringId() + ", Inhalt: " + vergehengruppe.toString());
             cursor.moveToNext();
         }
 

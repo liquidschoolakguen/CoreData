@@ -2,9 +2,10 @@ package akguen.liquidschool.coredata.model;
 
 public class Gruppe {
 
-
-    private String id;
+    private long id;
+    private String stringId;
     private String name;
+
 
     private String externName;
 
@@ -21,9 +22,10 @@ public class Gruppe {
     private String s10;
 
 
-    public Gruppe(String id, String name, String externName, String s1, String s2, String s3, String s4, String s5, String s6, String s7, String s8, String s9, String s10) {
+    public Gruppe(long id, String stringId, String name, String externName, String s1, String s2, String s3, String s4, String s5, String s6, String s7, String s8, String s9, String s10) {
 
         this.id = id;
+        this.stringId = stringId;
         this.name = name;
         this.externName = externName;
 
@@ -45,6 +47,37 @@ public class Gruppe {
     }
 
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getStringId() {
+        return stringId;
+    }
+
+    public void setStringId(String stringId) {
+        this.stringId = stringId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getExternName() {
+        return externName;
+    }
+
+    public void setExternName(String externName) {
+        this.externName = externName;
+    }
 
     public String getS1() {
         return s1;
@@ -124,29 +157,5 @@ public class Gruppe {
 
     public void setS10(String s10) {
         this.s10 = s10;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getExternName() {
-        return externName;
-    }
-
-    public void setExternName(String externName) {
-        this.externName = externName;
     }
 }
