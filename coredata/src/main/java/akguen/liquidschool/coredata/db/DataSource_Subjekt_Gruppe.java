@@ -22,12 +22,13 @@ public class DataSource_Subjekt_Gruppe {
 
     private String[] columns = {
             MyDbHelper.SL_SUBJEKT_ID,
-            MyDbHelper.SL_GRUPPE_ID,
+            MyDbHelper.SL_GRUPPE_STRINGID,
     };
 
 
     private String[] gruppeColumns = {
             MyDbHelper.GRUPPE_COLUMN_ID,
+            MyDbHelper.GRUPPE_COLUMN_STRINGID,
             MyDbHelper.GRUPPE_COLUMN_NAME,
             MyDbHelper.GRUPPE_COLUMN_EXTERNNAME,
             MyDbHelper.GRUPPE_COLUMN_S1,
@@ -55,19 +56,15 @@ public class DataSource_Subjekt_Gruppe {
 
 
     public DataSource_Subjekt_Gruppe(Context context) {
-
         dbHelper = new MyDbHelper(context);
     }
 
     public void open() {
-
         database = dbHelper.getWritableDatabase();
-
     }
 
     public void close() {
         dbHelper.close();
-
     }
 
     public void createSubjekt_Gruppe(ContentValues v) {
@@ -76,7 +73,7 @@ public class DataSource_Subjekt_Gruppe {
 
     public void deleteSubjekt_Gruppe(ContentValues v) {
         database.delete(MyDbHelper.TABLE_SUBJEKT_GRUPPE,
-                MyDbHelper.SL_SUBJEKT_ID + " = " + v.getAsString("subjekt_id") + " AND " + MyDbHelper.SL_GRUPPE_ID + " = " + v.getAsString("gruppe_id"),
+                MyDbHelper.SL_SUBJEKT_ID + " = " + v.getAsString("subjekt_id") + " AND " + MyDbHelper.SL_GRUPPE_STRINGID + " = " + v.getAsString("gruppe_stringid"),
                 null);
 
     }
@@ -85,16 +82,16 @@ public class DataSource_Subjekt_Gruppe {
 
         ContentValues values = new ContentValues();
         values.put(MyDbHelper.SL_SUBJEKT_ID, nu.getAsString("subjekt_id"));
-        values.put(MyDbHelper.SL_GRUPPE_ID, nu.getAsString("gruppe_id"));
+        values.put(MyDbHelper.SL_GRUPPE_STRINGID, nu.getAsString("gruppe_stringid"));
 
 
         database.update(MyDbHelper.TABLE_SUBJEKT_GRUPPE,
                 values,
-                MyDbHelper.SL_SUBJEKT_ID + " = " + old.getAsString("subjekt_id") + " AND " + MyDbHelper.SL_GRUPPE_ID + " = " + old.getAsString("gruppe_id"),
+                MyDbHelper.SL_SUBJEKT_ID + " = " + old.getAsString("subjekt_id") + " AND " + MyDbHelper.SL_GRUPPE_STRINGID + " = " + old.getAsString("gruppe_stringid"),
                 null);
 
         Cursor cursor = database.query(MyDbHelper.TABLE_SUBJEKT_GRUPPE,
-                columns, MyDbHelper.SL_SUBJEKT_ID + " = " + nu.getAsString("subjekt_id") + " AND " + MyDbHelper.SL_GRUPPE_ID + " = " + nu.getAsString("gruppe_id"),
+                columns, MyDbHelper.SL_SUBJEKT_ID + " = " + nu.getAsString("subjekt_id") + " AND " + MyDbHelper.SL_GRUPPE_STRINGID + " = " + nu.getAsString("gruppe_stringid"),
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -118,7 +115,7 @@ public class DataSource_Subjekt_Gruppe {
 
 
         int id1 = cursor.getColumnIndex(MyDbHelper.SL_SUBJEKT_ID);
-        int id2 = cursor.getColumnIndex(MyDbHelper.SL_GRUPPE_ID);
+        int id2 = cursor.getColumnIndex(MyDbHelper.SL_GRUPPE_STRINGID);
 
 
         ;
@@ -126,7 +123,7 @@ public class DataSource_Subjekt_Gruppe {
         String q2 = cursor.getString(id2);
 
         values.put("subjekt_id", q1);
-        values.put("gruppe_id", q2);
+        values.put("gruppe_stringid", q2);
 
         // Subjekt_Gruppe subjekt_gruppe = new Subjekt_Gruppe(id,vorname,nachname,passwort,kuerzel,status);
 
@@ -145,7 +142,7 @@ public class DataSource_Subjekt_Gruppe {
         while (!cursor.isAfterLast()) {
             subjekt_gruppe = cursorToSubjekt_GruppeAsContentValue(cursor);
             subjekt_gruppeList.add(subjekt_gruppe);
-            Log.d(LOG_TAG, "ID: " + subjekt_gruppe.toString());
+            //Log.d(LOG_TAG, "ID: " + subjekt_gruppe.toString());
             cursor.moveToNext();
         }
 
@@ -164,20 +161,21 @@ public class DataSource_Subjekt_Gruppe {
 
 
         int id0 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_ID);
-        int id1 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_NAME);
-        int id2 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_EXTERNNAME);
-        int id3 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S1);
-        int id4 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S2);
-        int id5 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S3);
-        int id6 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S4);
-        int id7 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S5);
-        int id8 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S6);
-        int id9 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S7);
-        int id10 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S8);
-        int id11 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S9);
-        int id12 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S10);
+        int id1 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_STRINGID);
+        int id2 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_NAME);
+        int id3 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_EXTERNNAME);
+        int id4 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S1);
+        int id5 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S2);
+        int id6 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S3);
+        int id7 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S4);
+        int id8 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S5);
+        int id9 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S6);
+        int id10 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S7);
+        int id11 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S8);
+        int id12 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S9);
+        int id13 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S10);
 
-        String id = cursor.getString(id0);
+        long id = cursor.getLong(id0);
         String q1 = cursor.getString(id1);
         String q2 = cursor.getString(id2);
         String q3 = cursor.getString(id3);
@@ -190,9 +188,9 @@ public class DataSource_Subjekt_Gruppe {
         String q10 = cursor.getString(id10);
         String q11 = cursor.getString(id11);
         String q12 = cursor.getString(id12);
+        String q13 = cursor.getString(id13);
 
-
-        return new Gruppe(id, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12);
+        return new Gruppe(id, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13);
     }
 
 
@@ -233,7 +231,7 @@ public class DataSource_Subjekt_Gruppe {
         List<Gruppe> gruppeList = new ArrayList<>();
 
         Cursor cursor = database.query(MyDbHelper.TABLE_GRUPPE + " LEFT JOIN " + MyDbHelper.TABLE_SUBJEKT_GRUPPE + " ON " + MyDbHelper.TABLE_SUBJEKT_GRUPPE + "."
-                        + MyDbHelper.SL_GRUPPE_ID + " = " + MyDbHelper.GRUPPE_COLUMN_ID,
+                        + MyDbHelper.SL_GRUPPE_STRINGID + " = " + MyDbHelper.GRUPPE_COLUMN_STRINGID,
                 gruppeColumns,
                 MyDbHelper.TABLE_SUBJEKT_GRUPPE + "." + MyDbHelper.SL_SUBJEKT_ID + " = " + i,
                 null, null, null, null);
@@ -256,14 +254,14 @@ public class DataSource_Subjekt_Gruppe {
     }
 
 
-    public List<Subjekt> getSubjektsFromGruppeById(String i) {
-        Log.d(LOG_TAG, "ID::::::::::::::::::: " + i);
+    public List<Subjekt> getSubjektsFromGruppeByStringId(String stringId) {
+        Log.d(LOG_TAG, "ID::::::::::::::::::: " + stringId);
         List<Subjekt> subjektList = new ArrayList<>();
 
         Cursor cursor = database.query(MyDbHelper.TABLE_SUBJEKT + " LEFT JOIN " + MyDbHelper.TABLE_SUBJEKT_GRUPPE + " ON " + MyDbHelper.TABLE_SUBJEKT_GRUPPE + "."
                         + MyDbHelper.SL_SUBJEKT_ID + " = " + MyDbHelper.SUBJEKT_COLUMN_ID,
                 subjektColumns,
-                MyDbHelper.TABLE_SUBJEKT_GRUPPE + "." + MyDbHelper.SL_GRUPPE_ID + " = " + i,
+                MyDbHelper.TABLE_SUBJEKT_GRUPPE + "." + MyDbHelper.SL_GRUPPE_STRINGID + " = " + stringId,
                 null, null, null, null);
 
         cursor.moveToFirst();

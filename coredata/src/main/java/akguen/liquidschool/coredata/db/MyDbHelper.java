@@ -524,16 +524,16 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String TABLE_SUBJEKT_GRUPPE = "subjekt_gruppe";
 
     public static final String SL_SUBJEKT_ID = "subjekt_id";
-    public static final String SL_GRUPPE_ID = "gruppe_id";
+    public static final String SL_GRUPPE_STRINGID = "gruppe_stringid";
 
 
     public static final String SQL_CREATE_SUBJEKT_GRUPPE =
             "CREATE TABLE " + TABLE_SUBJEKT_GRUPPE +
                     "(" + SL_SUBJEKT_ID + " INTEGER NOT NULL, " +
-                    SL_GRUPPE_ID + " TEXT NOT NULL," +
-                    " PRIMARY KEY(" + SL_SUBJEKT_ID + ", " + SL_GRUPPE_ID + ")," +
+                    SL_GRUPPE_STRINGID + " TEXT NOT NULL," +
+                    " PRIMARY KEY(" + SL_SUBJEKT_ID + ", " + SL_GRUPPE_STRINGID + ")," +
                     " FOREIGN KEY " + "(" + SL_SUBJEKT_ID + ")" + " REFERENCES " + TABLE_SUBJEKT + "(" + SUBJEKT_COLUMN_ID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE, " +
-                    " FOREIGN KEY " + "(" + SL_GRUPPE_ID + ")" + " REFERENCES " + TABLE_GRUPPE + "(" + GRUPPE_COLUMN_ID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE " +
+                    " FOREIGN KEY " + "(" + SL_GRUPPE_STRINGID + ")" + " REFERENCES " + TABLE_GRUPPE + "(" + GRUPPE_COLUMN_STRINGID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE " +
                     ");";
 
 
@@ -638,6 +638,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String SQL_DROP_LERNFORM = "DROP TABLE IF EXISTS " + TABLE_LERNFORM;
 
     public static final String SQL_DROP_SCHUELER_LERNGRUPPE = "DROP TABLE IF EXISTS " + TABLE_SCHUELER_LERNGRUPPE;
+    public static final String SQL_DROP_SUBJEKT_GRUPPE = "DROP TABLE IF EXISTS " + TABLE_SUBJEKT_GRUPPE;
+
     public static final String SQL_DROP_VERGEHEN_VERGEHENGRUPPE = "DROP TABLE IF EXISTS " + TABLE_VERGEHEN_VERGEHENGRUPPE;
     public static final String SQL_DROP_KOLLEGE_SCHUELER = "DROP TABLE IF EXISTS " + TABLE_KOLLEGE_SCHUELER;
     public static final String SQL_DROP_KOLLEGE_STANDORT = "DROP TABLE IF EXISTS " + TABLE_KOLLEGE_STANDORT;
@@ -709,28 +711,31 @@ public class MyDbHelper extends SQLiteOpenHelper {
             db.execSQL(SQL_CREATE_THEMA);
 
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SP_FACH + " angelegt.");
+          //  Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SP_FACH + " angelegt.");
             db.execSQL(SQL_CREATE_SP_FACH);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SP_FRAGMENT + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SP_FRAGMENT + " angelegt.");
             db.execSQL(SQL_CREATE_SP_FRAGMENT);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_RYTHMUSZELLE + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_RYTHMUSZELLE + " angelegt.");
             db.execSQL(SQL_CREATE_RYTHMUSZELLE);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_LERNFORM + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_LERNFORM + " angelegt.");
             db.execSQL(SQL_CREATE_LERNFORM);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHUELER_LERNGRUPPE + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHUELER_LERNGRUPPE + " angelegt.");
             db.execSQL(SQL_CREATE_SCHUELER_LERNGRUPPE);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_VERGEHEN_VERGEHENGRUPPE + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHUELER_LERNGRUPPE + " angelegt.");
+            db.execSQL(SQL_CREATE_SUBJEKT_GRUPPE);
+
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_VERGEHEN_VERGEHENGRUPPE + " angelegt.");
             db.execSQL(SQL_CREATE_VERGEHEN_VERGEHENGRUPPE);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_KOLLEGE_STANDORT + " angelegt.");
+           // Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_KOLLEGE_STANDORT + " angelegt.");
             db.execSQL(SQL_CREATE_KOLLEGE_STANDORT);
 
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHUELER_ANGEHOERIGER + " angelegt.");
+            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHUELER_ANGEHOERIGER + " angelegt.");
             db.execSQL(SQL_CREATE_SCHUELER_ANGEHOERIGER);
 
         } catch (Exception ex) {
@@ -768,6 +773,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
 
         db.execSQL(SQL_DROP_SCHUELER_LERNGRUPPE);
+        db.execSQL(SQL_DROP_SUBJEKT_GRUPPE);
         db.execSQL(SQL_DROP_VERGEHEN_VERGEHENGRUPPE);
         db.execSQL(SQL_DROP_KOLLEGE_SCHUELER);
         db.execSQL(SQL_DROP_KOLLEGE_STANDORT);
