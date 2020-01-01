@@ -22,8 +22,8 @@ public class DataSource_Separator {
             MyDbHelper.SEPARATOR_COLUMN_ID,
             MyDbHelper.SEPARATOR_COLUMN_STRINGID,
             MyDbHelper.SEPARATOR_COLUMN_NAME,
-            MyDbHelper.SEPARATOR_COLUMN_NEED,
-            MyDbHelper.SEPARATOR_COLUMN_POSSIBLE
+            MyDbHelper.SEPARATOR_COLUMN_NEED
+
     };
 
 
@@ -50,7 +50,7 @@ public class DataSource_Separator {
 
     }
 
-    public Separator createSeparator(String v1, String v2, String v3, String v4) {
+    public Separator createSeparator(String v1, String v2, String v3) {
 
         Separator gibs = getSeparatorByStringId(v1);
         if (gibs != null) {
@@ -63,7 +63,7 @@ public class DataSource_Separator {
         values.put(MyDbHelper.SEPARATOR_COLUMN_STRINGID, v1);
         values.put(MyDbHelper.SEPARATOR_COLUMN_NAME, v2);
         values.put(MyDbHelper.SEPARATOR_COLUMN_NEED, v3);
-        values.put(MyDbHelper.SEPARATOR_COLUMN_POSSIBLE, v4);
+
 
         long insertId = database.insert(MyDbHelper.TABLE_SEPARATOR, null, values);
 
@@ -87,7 +87,7 @@ public class DataSource_Separator {
 
     }
 
-    public Separator updateSeparator(long id, String v1, String v2, String v3, String v4) {
+    public Separator updateSeparator(long id, String v1, String v2, String v3) {
 
 
         Separator gibs = getSeparatorByStringId(v1);
@@ -101,7 +101,7 @@ public class DataSource_Separator {
         values.put(MyDbHelper.SEPARATOR_COLUMN_STRINGID, v1);
         values.put(MyDbHelper.SEPARATOR_COLUMN_NAME, v2);
         values.put(MyDbHelper.SEPARATOR_COLUMN_NEED, v3);
-        values.put(MyDbHelper.SEPARATOR_COLUMN_POSSIBLE, v4);
+
 
         database.update(MyDbHelper.TABLE_SEPARATOR,
                 values,
@@ -181,15 +181,17 @@ public class DataSource_Separator {
         int id1 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_STRINGID);
         int id2 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_NAME);
         int id3 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_SEPARATOR_COLUMN_ID);
-
+        int id4 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_FORMULARCHECKED);
 
         long id = cursor.getLong(id0);
         String q1 = cursor.getString(id1);
         String q2 = cursor.getString(id2);
         String q3 = cursor.getString(id3);
+        int q4 = cursor.getInt(id3);
 
+        boolean boo = q4==1?true:false;
 
-        return new Radio(id, q1, q2, q3);
+        return new Radio(id, q1, q2, q3, boo);
     }
 
 
@@ -206,17 +208,17 @@ public class DataSource_Separator {
         int id1 = cursor.getColumnIndex(MyDbHelper.SEPARATOR_COLUMN_STRINGID);
         int id2 = cursor.getColumnIndex(MyDbHelper.SEPARATOR_COLUMN_NAME);
         int id3 = cursor.getColumnIndex(MyDbHelper.SEPARATOR_COLUMN_NEED);
-        int id4 = cursor.getColumnIndex(MyDbHelper.SEPARATOR_COLUMN_POSSIBLE);
+
 
         long id = cursor.getLong(id0);
         String q1 = cursor.getString(id1);
         String q2 = cursor.getString(id2);
         String q3 = cursor.getString(id3);
-        String q4 = cursor.getString(id4);
+
 
        // Separator separator = new Separator(id,vorname,nachname,passwort,kuerzel,status);
 
-        return new Separator(id,q1,q2,q3,q4);
+        return new Separator(id,q1,q2,q3);
     }
 
     public List<Separator> getAllSeparators() {

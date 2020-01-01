@@ -14,47 +14,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final int DB_VERSION = 109;
 
 
-//------------------------------------------------------------------------------------------
-/*
 
-    public static final String TABLE_GRUPPE = "gruppe";
-
-    public static final String GRUPPE_COLUMN_ID = "_id";
-    public static final String GRUPPE_COLUMN_STRINGID = "stringid";
-    public static final String GRUPPE_COLUMN_NAME = "name";
-    public static final String GRUPPE_COLUMN_EXTERNNAME = "externname";
-    public static final String GRUPPE_COLUMN_S1 = "s1";
-    public static final String GRUPPE_COLUMN_S2 = "s2";
-    public static final String GRUPPE_COLUMN_S3 = "s3";
-    public static final String GRUPPE_COLUMN_S4 = "s4";
-    public static final String GRUPPE_COLUMN_S5 = "s5";
-    public static final String GRUPPE_COLUMN_S6 = "s6";
-    public static final String GRUPPE_COLUMN_S7 = "s7";
-    public static final String GRUPPE_COLUMN_S8 = "s8";
-    public static final String GRUPPE_COLUMN_S9 = "s9";
-    public static final String GRUPPE_COLUMN_S10 = "s10";
-
-
-    public static final String SQL_CREATE_GRUPPE =
-            "CREATE TABLE " + TABLE_GRUPPE +
-                    "(" + GRUPPE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-
-                    GRUPPE_COLUMN_STRINGID+ " TEXT, " +
-                    GRUPPE_COLUMN_NAME + " TEXT, " +
-                    GRUPPE_COLUMN_EXTERNNAME + " TEXT, " +
-
-                    GRUPPE_COLUMN_S1 + " TEXT, " +
-                    GRUPPE_COLUMN_S2 + " TEXT, " +
-                    GRUPPE_COLUMN_S3 + " TEXT, " +
-                    GRUPPE_COLUMN_S4 + " TEXT, " +
-                    GRUPPE_COLUMN_S5 + " TEXT, " +
-                    GRUPPE_COLUMN_S6 + " TEXT, " +
-                    GRUPPE_COLUMN_S7 + " TEXT, " +
-                    GRUPPE_COLUMN_S8 + " TEXT, " +
-                    GRUPPE_COLUMN_S9 + " TEXT, " +
-                    GRUPPE_COLUMN_S10 + " TEXT);";
-
-*/
 
     //------------------------------------------------------------------------------------------
 
@@ -348,15 +308,14 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String SEPARATOR_COLUMN_STRINGID = "stringid";
     public static final String SEPARATOR_COLUMN_NAME = "name";
     public static final String SEPARATOR_COLUMN_NEED = "need";
-    public static final String SEPARATOR_COLUMN_POSSIBLE = "possible";
+
     public static final String SQL_CREATE_SEPARATOR =
             "CREATE TABLE " + TABLE_SEPARATOR +
                     "(" + SEPARATOR_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
                     SEPARATOR_COLUMN_STRINGID + " TEXT, " +
                     SEPARATOR_COLUMN_NAME + " TEXT, " +
-                    SEPARATOR_COLUMN_NEED + " TEXT, " +
-                    SEPARATOR_COLUMN_POSSIBLE + " TEXT);";
+                    SEPARATOR_COLUMN_NEED + " TEXT);";
 
 
     //------------------------------------------------------------------------------------------
@@ -367,7 +326,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String RADIO_COLUMN_STRINGID = "stringid";
     public static final String RADIO_COLUMN_NAME = "name";
     public static final String RADIO_COLUMN_SEPARATOR_COLUMN_ID = "separator_id";
-
+    public static final String RADIO_COLUMN_FORMULARCHECKED = "formularchecked";
+    public static final String RADIO_COLUMN_DEFAULTCHECKED = "defaultchecked";
 
     public static final String SQL_CREATE_RADIO =
             "CREATE TABLE " + TABLE_RADIO +
@@ -375,7 +335,9 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
                     RADIO_COLUMN_STRINGID + " TEXT, " +
                     RADIO_COLUMN_NAME + " TEXT, " +
-                    RADIO_COLUMN_SEPARATOR_COLUMN_ID + "  TEXT);";
+                    RADIO_COLUMN_SEPARATOR_COLUMN_ID + " TEXT, " +
+                    RADIO_COLUMN_FORMULARCHECKED + " TINYINT, " +
+                    RADIO_COLUMN_DEFAULTCHECKED + "  TINYINT);";
 
 
     //------------------------------------------------------------------------------------------

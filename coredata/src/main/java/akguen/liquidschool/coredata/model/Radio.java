@@ -7,19 +7,33 @@ public class Radio {
     private String name;
     private String separator_id;
 
-    private boolean checked = false; //Nicht für die Datenbank, sondern nureine Hilfsvariable beim Build einer Gruppe
+    private boolean formular_checked = false; // muss jetzt doch in die Datenbank
+    private boolean default_checked = false;
 
-    public Radio(long id, String stringId, String name, String separator_id) {
+
+    public Radio(long id, String stringId, String name, String separator_id, boolean formular_checked, boolean default_checked) {
 
         this.id = id;
         this.stringId = stringId;
         this.name = name;
         this.separator_id = separator_id;
+        this.formular_checked = formular_checked;
+        this.default_checked = default_checked;
     }
 
     public Radio(){
 
     }
+
+
+    public boolean isDefault_checked() {
+        return default_checked;
+    }
+
+    public void setDefault_checked(boolean default_checked) {
+        this.default_checked = default_checked;
+    }
+
     public long getId() {
         return id;
     }
@@ -28,12 +42,12 @@ public class Radio {
         this.id = id;
     }
 
-    public boolean isChecked() {
-        return checked;
+    public boolean isFormular_checked() {
+        return formular_checked;
     }
 
-    public void setChecked(boolean checked) {
-        this.checked = checked;
+    public void setFormular_checked(boolean formular_checked) {
+        this.formular_checked = formular_checked;
     }
 
     public String getStringId() {

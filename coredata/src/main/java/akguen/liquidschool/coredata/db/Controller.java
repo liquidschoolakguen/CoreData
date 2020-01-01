@@ -19,7 +19,6 @@ public class Controller {
     private DataSource_Radio ds_radio;
 
 
-
     public Controller(Context context) {
         this.c = context;
     }
@@ -46,9 +45,7 @@ public class Controller {
     }
 
 
- 
-    
-    public void buildGruppe(Gruppe vaterGruppe, Separator s) {
+    public Gruppe buildGruppe(Gruppe vaterGruppe, Separator s) {
 
 
         Gruppe n = new Gruppe();
@@ -64,10 +61,8 @@ public class Controller {
             n.setVaterStringId("");
 
 
-            ds_gruppe.createGruppe(n.getStringId(), n.getName(), n.getExternName(), n.getVaterStringId());
+            return ds_gruppe.createGruppe(n.getStringId(), n.getName(), n.getExternName(), n.getVaterStringId());
 
-
-            return;
 
         }
 
@@ -78,7 +73,7 @@ public class Controller {
         n.setVaterStringId(vaterGruppe.getStringId());
 
 
-        ds_gruppe.createGruppe(n.getStringId(), n.getName(), n.getExternName(), n.getVaterStringId());
+        return ds_gruppe.createGruppe(n.getStringId(), n.getName(), n.getExternName(), n.getVaterStringId());
 
 
     }
@@ -113,7 +108,7 @@ public class Controller {
             }
         }
 
-       // return separatorList;
+        // return separatorList;
 
         return visibles;
     }
@@ -157,7 +152,7 @@ public class Controller {
 
         String externname = "";
         for (Radio r : radioList) {
-            if (r.isChecked()) {
+            if (r.isFormular_checked()) {
 
                 externname = externname + " + " + r.getName();
             }
@@ -183,23 +178,30 @@ public class Controller {
 
 
         for (Radio r : radioList) {
-            String val = (r.isChecked()) ? "1" : "0";
+            String val = (r.isFormular_checked()) ? "1" : "0";
             gen = gen + val;
 
         }
 
         return gen;
     }
-    
-    public void buildSeparatorWithRadios(List<String> radioNames, String sepName, Gruppe neededGruppe, Gruppe possibleGruppe) {
+
+    public Separator buildSeparatorWithRadios(List<Radio> radios, String sepName, Gruppe neededGruppe) {
 
         Separator ss = new Separator();
         ss.setName(sepName);
 
 
-        Collections.sort(radioNames);
+        List<String> strs = new ArrayList<String>();
+
+        for (Radio r : radios) {
+
+            strs.add(r.getStringId());
+        }
+
+        Collections.sort(strs);
         String sep_id = "";
-        for (String v : radioNames) {
+        for (String v : strs) {
             sep_id = sep_id + v + "+";
 
         }
@@ -210,41 +212,17 @@ public class Controller {
         ss.setNeed(neededGruppe.getStringId());
 
 
-        boolean goodPossible = false;
+        Separator h = ds_separator.createSeparator(ss.getStringId(), ss.getName(), ss.getNeed());
 
 
-        if (possibleGruppe.getStringId().equals(neededGruppe.getStringId())) {
-            goodPossible = true;
-        } else {
+        for (Radio rrr : radios) {
 
-
-            for (Gruppe ggg : holeAlleVäter(neededGruppe)) {
-                if (possibleGruppe.getStringId().equals(neededGruppe.getStringId())) {
-                    goodPossible = true;
-                    break;
-
-                }
-
-            }
-        }
-
-        if (goodPossible) {
-
-            ss.setPossible(possibleGruppe.getStringId());
-
-            Separator h = ds_separator.createSeparator(ss.getStringId(), ss.getName(), ss.getNeed(), ss.getPossible());
-
-
-            for (String radioName : radioNames) {
-
-                ds_radio.createRadio(radioName, radioName, h.getStringId());
-
-            }
-
+            ds_radio.createRadio(rrr.getStringId(), rrr.getName(), h.getStringId(), false, rrr.isDefault_checked());
 
         }
 
 
+        return null;
     }
 
 

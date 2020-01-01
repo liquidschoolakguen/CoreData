@@ -6,24 +6,30 @@ public class Separator {
     private String stringId; // zusammengesetzter String aus den alphabetisch sortierten StringIds der Radios
     private String name;
     private String need;
-    private String possible;
 
+    private boolean selected=false; //Hilfsvariable;
 
-    private int visibility; //Nicht für die Datenbank, sondern nureine Hilfsvariable
+    private int visibility; //Nicht für die Datenbank, sondern nur eine Hilfsvariable
 
-    public Separator(long id, String stringId, String name, String need, String possible){
+    public Separator(long id, String stringId, String name, String need){
 
         this.id = id;
         this.stringId = stringId;
         this.name = name;
         this.need = need;
-        this.possible = possible;
     }
 
     public Separator(){
 
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
     public long getId() {
         return id;
@@ -31,14 +37,6 @@ public class Separator {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getPossible() {
-        return possible;
-    }
-
-    public void setPossible(String possible) {
-        this.possible = possible;
     }
 
     public int getVisibility() {
