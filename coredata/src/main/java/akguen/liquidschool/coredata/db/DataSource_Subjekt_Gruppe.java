@@ -31,16 +31,8 @@ public class DataSource_Subjekt_Gruppe {
             MyDbHelper.GRUPPE_COLUMN_STRINGID,
             MyDbHelper.GRUPPE_COLUMN_NAME,
             MyDbHelper.GRUPPE_COLUMN_EXTERNNAME,
-            MyDbHelper.GRUPPE_COLUMN_S1,
-            MyDbHelper.GRUPPE_COLUMN_S2,
-            MyDbHelper.GRUPPE_COLUMN_S3,
-            MyDbHelper.GRUPPE_COLUMN_S4,
-            MyDbHelper.GRUPPE_COLUMN_S5,
-            MyDbHelper.GRUPPE_COLUMN_S6,
-            MyDbHelper.GRUPPE_COLUMN_S7,
-            MyDbHelper.GRUPPE_COLUMN_S8,
-            MyDbHelper.GRUPPE_COLUMN_S9,
-            MyDbHelper.GRUPPE_COLUMN_S10
+            MyDbHelper.GRUPPE_COLUMN_VATERSTRINGID
+           
 
 
     };
@@ -125,8 +117,7 @@ public class DataSource_Subjekt_Gruppe {
         values.put("subjekt_id", q1);
         values.put("gruppe_stringid", q2);
 
-        // Subjekt_Gruppe subjekt_gruppe = new Subjekt_Gruppe(id,vorname,nachname,passwort,kuerzel,status);
-
+       
         return values;
     }
 
@@ -164,33 +155,15 @@ public class DataSource_Subjekt_Gruppe {
         int id1 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_STRINGID);
         int id2 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_NAME);
         int id3 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_EXTERNNAME);
-        int id4 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S1);
-        int id5 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S2);
-        int id6 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S3);
-        int id7 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S4);
-        int id8 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S5);
-        int id9 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S6);
-        int id10 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S7);
-        int id11 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S8);
-        int id12 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S9);
-        int id13 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_S10);
+        int id4 = cursor.getColumnIndex(MyDbHelper.GRUPPE_COLUMN_VATERSTRINGID);
 
         long id = cursor.getLong(id0);
         String q1 = cursor.getString(id1);
         String q2 = cursor.getString(id2);
         String q3 = cursor.getString(id3);
         String q4 = cursor.getString(id4);
-        String q5 = cursor.getString(id5);
-        String q6 = cursor.getString(id6);
-        String q7 = cursor.getString(id7);
-        String q8 = cursor.getString(id8);
-        String q9 = cursor.getString(id9);
-        String q10 = cursor.getString(id10);
-        String q11 = cursor.getString(id11);
-        String q12 = cursor.getString(id12);
-        String q13 = cursor.getString(id13);
 
-        return new Gruppe(id, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13);
+        return new Gruppe(id, q1, q2, q3, q4);
     }
 
 
