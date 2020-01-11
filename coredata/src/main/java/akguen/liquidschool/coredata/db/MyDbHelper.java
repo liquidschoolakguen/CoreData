@@ -11,7 +11,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     private static final String LOG_TAG = MyDbHelper.class.getSimpleName();
 
     public static final String DB_NAME = "pauli_rot_lite.db";
-    public static final int DB_VERSION = 109;
+    public static final int DB_VERSION = 134;
 
 
 
@@ -50,7 +50,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public static final String TABLE_GRUPPE = "gruppe";
 
     public static final String GRUPPE_COLUMN_ID = "_id";
-    public static final String GRUPPE_COLUMN_STRINGID = "stringid";
+    public static final String GRUPPE_COLUMN_STRINGID = "gruppe_stringid";
     public static final String GRUPPE_COLUMN_NAME = "name";
     public static final String GRUPPE_COLUMN_EXTERNNAME = "externname";
     public static final String GRUPPE_COLUMN_VATERSTRINGID = "vaterstringid";
@@ -65,10 +65,10 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     GRUPPE_COLUMN_NAME + " TEXT, " +
                     GRUPPE_COLUMN_EXTERNNAME + " TEXT, " +
 
-                    GRUPPE_COLUMN_VATERSTRINGID + " TEXT, " +
+                    GRUPPE_COLUMN_VATERSTRINGID + " TEXT" +
 
 
-                    " FOREIGN KEY " + "(" + GRUPPE_COLUMN_VATERSTRINGID + ")" + " REFERENCES " + TABLE_GRUPPE + "(" + GRUPPE_COLUMN_STRINGID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE " +
+                 //   " FOREIGN KEY " + "(" + GRUPPE_COLUMN_VATERSTRINGID + ")" + " REFERENCES " + TABLE_GRUPPE + "(" + GRUPPE_COLUMN_STRINGID + ") " + "ON DELETE CASCADE ON UPDATE CASCADE " +
 
                     ");";
 
@@ -304,8 +304,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_SEPARATOR = "separator";
 
-    public static final String SEPARATOR_COLUMN_ID = "_id";
-    public static final String SEPARATOR_COLUMN_STRINGID = "stringid";
+    public static final String SEPARATOR_COLUMN_ID = "separator_id";
+    public static final String SEPARATOR_COLUMN_STRINGID = "separators_stringid";
     public static final String SEPARATOR_COLUMN_NAME = "name";
     public static final String SEPARATOR_COLUMN_NEED = "need";
 
@@ -322,10 +322,10 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_RADIO = "radio";
 
-    public static final String RADIO_COLUMN_ID = "_id";
-    public static final String RADIO_COLUMN_STRINGID = "stringid";
+    public static final String RADIO_COLUMN_ID = "radio_id";
+    public static final String RADIO_COLUMN_STRINGID = "radios_stringid";
     public static final String RADIO_COLUMN_NAME = "name";
-    public static final String RADIO_COLUMN_SEPARATOR_COLUMN_ID = "separator_id";
+    public static final String RADIO_COLUMN_SEPARATOR_COLUMN_ID = "radios_separator_id";
     public static final String RADIO_COLUMN_FORMULARCHECKED = "formularchecked";
     public static final String RADIO_COLUMN_DEFAULTCHECKED = "defaultchecked";
 
@@ -664,28 +664,28 @@ public class MyDbHelper extends SQLiteOpenHelper {
         try {
             db.execSQL("PRAGMA foreign_keys=ON");
 
-
+            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_GRUPPE + " angelegt.");
             db.execSQL(SQL_CREATE_GRUPPE);
 
-            // Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_KOLLEGE + " angelegt.");
+             Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_KOLLEGE + " angelegt.");
             db.execSQL(SQL_CREATE_KOLLEGE);
 
-            // Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHUELER + " angelegt.");
+             Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHUELER + " angelegt.");
             db.execSQL(SQL_CREATE_SCHUELER);
 
-            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHULVERBUND + " angelegt.");
+            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SCHULVERBUND + " angelegt.");
             db.execSQL(SQL_CREATE_SCHULVERBUND);
 
-            // Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_STANDORT + " angelegt.");
+             Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_STANDORT + " angelegt.");
             db.execSQL(SQL_CREATE_STANDORT);
 
-            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_ADRESSE + " angelegt.");
+            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_ADRESSE + " angelegt.");
             db.execSQL(SQL_CREATE_ADRESSE);
 
-            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SUBJEKT + " angelegt.");
+            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_SUBJEKT + " angelegt.");
             db.execSQL(SQL_CREATE_SUBJEKT);
 
-            //Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_ANGEHOERIGER + " angelegt.");
+            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_ANGEHOERIGER + " angelegt.");
             db.execSQL(SQL_CREATE_ANGEHOERIGER);
 
             // Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE_VORFALL + " angelegt.");

@@ -80,12 +80,12 @@ public class DataSource_Radio {
 
     public Radio updateRadio(long id, String v1, String v2, String v3, boolean v4, boolean v5) {
 
-        Radio gibs = getRadioByStringId(v1);
+       /* Radio gibs = getRadioByStringId(v1);
         if (gibs != null) {
 
             return gibs;
 
-        }
+        }*/
 
 
 
@@ -122,7 +122,7 @@ public class DataSource_Radio {
 
 
         Cursor cursor = database.query(MyDbHelper.TABLE_RADIO,
-                columns, MyDbHelper.RADIO_COLUMN_STRINGID + "=" + stringId,
+                columns, MyDbHelper.RADIO_COLUMN_STRINGID + "='" + stringId+"'",
                 null, null, null, null);
 
         cursor.moveToFirst();

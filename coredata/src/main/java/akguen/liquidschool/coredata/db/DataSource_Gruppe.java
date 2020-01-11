@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,7 +136,7 @@ public class DataSource_Gruppe {
 
 
         Cursor cursor = database.query(MyDbHelper.TABLE_GRUPPE,
-                columns, MyDbHelper.GRUPPE_COLUMN_STRINGID + "=" + stringId,
+                columns, MyDbHelper.GRUPPE_COLUMN_STRINGID + " = '" + stringId+"'",
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -198,7 +199,7 @@ public class DataSource_Gruppe {
         List<Gruppe> gruppeList = new ArrayList<>();
 
         Cursor cursor = database.query(MyDbHelper.TABLE_GRUPPE,
-                columns, MyDbHelper.GRUPPE_COLUMN_VATERSTRINGID + "=" + vaterStringId, null, null, null, null);
+                columns, MyDbHelper.GRUPPE_COLUMN_VATERSTRINGID + "='" + vaterStringId+"'", null, null, null, null);
 
         cursor.moveToFirst();
         Gruppe gruppe;

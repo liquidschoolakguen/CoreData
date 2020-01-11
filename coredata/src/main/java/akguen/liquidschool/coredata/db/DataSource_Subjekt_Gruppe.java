@@ -234,7 +234,7 @@ public class DataSource_Subjekt_Gruppe {
         Cursor cursor = database.query(MyDbHelper.TABLE_SUBJEKT + " LEFT JOIN " + MyDbHelper.TABLE_SUBJEKT_GRUPPE + " ON " + MyDbHelper.TABLE_SUBJEKT_GRUPPE + "."
                         + MyDbHelper.SL_SUBJEKT_ID + " = " + MyDbHelper.SUBJEKT_COLUMN_ID,
                 subjektColumns,
-                MyDbHelper.TABLE_SUBJEKT_GRUPPE + "." + MyDbHelper.SL_GRUPPE_STRINGID + " = " + stringId,
+                MyDbHelper.TABLE_SUBJEKT_GRUPPE + "." + MyDbHelper.SL_GRUPPE_STRINGID + " = '" + stringId+"'",
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -248,7 +248,7 @@ public class DataSource_Subjekt_Gruppe {
         }
 
         cursor.close();
-
+        Log.d(LOG_TAG, "ID::::::::::::::::::: " + subjektList.size());
         return subjektList;
     }
 

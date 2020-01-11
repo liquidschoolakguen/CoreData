@@ -29,8 +29,13 @@ public class DataSource_Separator {
 
     private String[] radioColumns = {
             MyDbHelper.TABLE_RADIO + "." + MyDbHelper.RADIO_COLUMN_ID,
-            MyDbHelper.RADIO_COLUMN_NAME,
-            MyDbHelper.RADIO_COLUMN_SEPARATOR_COLUMN_ID
+            MyDbHelper.TABLE_RADIO + "." + MyDbHelper.RADIO_COLUMN_STRINGID,
+            MyDbHelper.TABLE_RADIO + "." + MyDbHelper.RADIO_COLUMN_NAME,
+            MyDbHelper.TABLE_RADIO + "." + MyDbHelper.RADIO_COLUMN_SEPARATOR_COLUMN_ID,
+            MyDbHelper.TABLE_RADIO + "." + MyDbHelper.RADIO_COLUMN_FORMULARCHECKED,
+            MyDbHelper.TABLE_RADIO + "." + MyDbHelper.RADIO_COLUMN_DEFAULTCHECKED
+
+
     };
 
 
@@ -125,7 +130,7 @@ public class DataSource_Separator {
 
 
         Cursor cursor = database.query(MyDbHelper.TABLE_SEPARATOR,
-                columns, MyDbHelper.SEPARATOR_COLUMN_STRINGID + "=" + stringId,
+                columns, MyDbHelper.SEPARATOR_COLUMN_STRINGID + "='" + stringId+"'",
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -149,7 +154,7 @@ public class DataSource_Separator {
         Cursor cursor = database.query(MyDbHelper.TABLE_RADIO+ " LEFT JOIN " + MyDbHelper.TABLE_SEPARATOR + " ON " + MyDbHelper.TABLE_SEPARATOR + "."
                         + MyDbHelper.SEPARATOR_COLUMN_ID + " = " + MyDbHelper.RADIO_COLUMN_SEPARATOR_COLUMN_ID,
                 radioColumns,
-                MyDbHelper.TABLE_RADIO + "." + MyDbHelper.RADIO_COLUMN_SEPARATOR_COLUMN_ID+ " = " +i,
+                MyDbHelper.TABLE_RADIO + "." + MyDbHelper.RADIO_COLUMN_SEPARATOR_COLUMN_ID+ " = '" +i+"'",
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -182,16 +187,20 @@ public class DataSource_Separator {
         int id2 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_NAME);
         int id3 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_SEPARATOR_COLUMN_ID);
         int id4 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_FORMULARCHECKED);
+        int id5 = cursor.getColumnIndex(MyDbHelper.RADIO_COLUMN_DEFAULTCHECKED);
+
 
         long id = cursor.getLong(id0);
         String q1 = cursor.getString(id1);
         String q2 = cursor.getString(id2);
         String q3 = cursor.getString(id3);
-        int q4 = cursor.getInt(id3);
+        int q4 = cursor.getInt(id4);
+        int q5 = cursor.getInt(id5);
 
-        boolean boo = q4==1?true:false;
 
-        return new Radio(id, q1, q2, q3, boo);
+        boolean boo4 = q4==1?true:false;
+        boolean boo5 = q5==1?true:false;
+        return new Radio(id, q1, q2, q3, boo4, boo5);
     }
 
 
